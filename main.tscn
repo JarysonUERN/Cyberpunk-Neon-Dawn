@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://ddaawc8bvt4fx"]
 
 [ext_resource type="Script" uid="uid://dmcvipjn467h1" path="res://main.gd" id="1_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://cwccglpf7vhl1" path="res://player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://cwccglpf7vhl1" path="res://Personagem/Protagonista/player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://jks2ow6y7ebj" path="res://Personagem/Vilao01/mob.tscn" id="2_h2yge"]
 
 [sub_resource type="Curve2D" id="Curve2D_h2yge"]

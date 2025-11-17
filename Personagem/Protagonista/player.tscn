@@ -134,8 +134,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_606se"]
-b = Vector2(-0.38759804, 138.12999)
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_auvcu"]
+a = Vector2(0.6976738, -42.5)
+b = Vector2(0, 28.499985)
 
 [node name="Player" type="Area2D"]
 script = ExtResource("1_onrkg")
@@ -147,8 +148,8 @@ sprite_frames = SubResource("SpriteFrames_bwjto")
 animation = &"jump"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(338.00003, 143)
+position = Vector2(316, 231.5)
 scale = Vector2(12.9, 1)
-shape = SubResource("SegmentShape2D_606se")
+shape = SubResource("SegmentShape2D_auvcu")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
