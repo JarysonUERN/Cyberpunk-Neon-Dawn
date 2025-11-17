@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddaawc8bvt4fx"]
+
+[ext_resource type="Script" uid="uid://dmcvipjn467h1" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://cwccglpf7vhl1" path="res://player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://jks2ow6y7ebj" path="res://Personagem/Vilao01/mob.tscn" id="2_h2yge"]
+
+[sub_resource type="Curve2D" id="Curve2D_h2yge"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -0.028720897, 15.999974, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 695.9558, 25.249321, 0, 0, 0, 0, 695.18036, 457.24863, 0, 0, 0, 0, 7.195802, 448.01364, 0, 0, 0, 0, -0.028720897, 15.999974, 0, 0, 0, 0, 679.61115, 217.22029, 0, 0, 0, 0, 575.35284, 361.0334, 0, 0, 0, 0, 367.43936, 312.6601, 0, 0, 0, 0, 319.56866, 240.57404, 0, 0, 0, 0, 175.58325, 232.31557, 0, 0, 0, 0, 183.33913, 368.3297, 0, 0, 0, 0, 71.35367, 360.12866, 0, 0, 0, 0, 55.640896, 200.1002, 0, 0, 0, 0, 559.238, 425.00455, 0, 0, 0, 0, 543.92737, 40.976444, 0, 0, 0, 0, 103.82751, 96.18653, 0, 0, 0, 0, 327.28146, 400.58813, 0, 0, 0, 0, 431.85568, 80.77534)
+}
+point_count = 19
+
+[node name="Main" type="Node"]
+script = ExtResource("1_0xm2m")
+mob_scene = ExtResource("2_h2yge")
+
+[node name="Player" parent="." instance=ExtResource("1_ig7tw")]
+position = Vector2(-198, 16)
+
+[node name="MobTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="ScoreTimer" type="Timer" parent="."]
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(240, 450)
+
+[node name="MobPath" type="Path2D" parent="."]
+rotation = -0.001795057
+curve = SubResource("Curve2D_h2yge")
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
+position = Vector2(-0.028720897, 15.999974)
+rotation = -1.5690013
+
+[connection signal="hit" from="Player" to="." method="_on_player_hit"]
+[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
