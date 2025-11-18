@@ -1,0 +1,57 @@
+extends Node
+
+@export var mob_scene: PackedScene
+var score
+
+# Chamado quando o nó entra na árvore da cena pela primeira vez.
+func _ready():
+	new_game()
+
+func game_over():
+	$ScoreTimer.stop()
+	$MobTimer.stop()
+
+func new_game():
+	score = 0
+	$Player.start($StartPosition.position)
+	$StartTimer.start()
+
+func _on_score_timer_timeout():
+	score += 1
+
+func _on_start_timer_timeout():
+	$MobTimer.start()
+	$ScoreTimer.start()
+	
+func _on_mob_timer_timeout():
+	# Criar uma nova instância da cena Mob.
+	var mob = mob_scene.instantiate()
+
+	# Escolher uma localização aleatória no Path2D.
+	var mob_spawn_location = $MobPath/MobSpawnLocation
+	mob_spawn_location.progress_ratio = randf()
+
+	# Definir a posição do mob para a localização aleatória.
+	mob.position = mob_spawn_location.position
+
+	# Definir a direção do mob perpendicular à direção do caminho.
+	var direction = mob_spawn_location.rotation + PI / 2
+
+	# Adicionar um pouco de aleatoriedade à direção.
+	direction += randf_range(-PI / 4, PI / 4)
+	mob.rotation = direction
+
+	# Escolher a velocidade para o mob.
+	var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
+	mob.linear_velocity = velocity.rotated(direction)
+
+	# "Spawnar" o mob adicionando-o à cena Main.
+	add_child(mob)
+
+# 'delta' é o tempo decorrido desde o frame anterior.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_player_hit() -> void:
+	pass # Replace with function body.
