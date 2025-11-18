@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddaawc8bvt4fx"]
+[gd_scene load_steps=6 format=3 uid="uid://ddaawc8bvt4fx"]
 
 [ext_resource type="Script" uid="uid://dmcvipjn467h1" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://cwccglpf7vhl1" path="res://Personagem/Protagonista/player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://jks2ow6y7ebj" path="res://Personagem/Vilao01/mob.tscn" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://dw38l4gckt2ji" path="res://CityLayers-20251118T112244Z-1-001/Cenário01.png" id="4_1bvp3"]
 
 [sub_resource type="Curve2D" id="Curve2D_h2yge"]
 _data = {
@@ -15,7 +16,7 @@ script = ExtResource("1_0xm2m")
 mob_scene = ExtResource("2_h2yge")
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(-232, 144)
+position = Vector2(-184, 104)
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -31,13 +32,23 @@ one_shot = true
 position = Vector2(240, 450)
 
 [node name="MobPath" type="Path2D" parent="."]
-position = Vector2(0, 8)
+position = Vector2(192, 40)
 rotation = -0.001795057
 curve = SubResource("Curve2D_h2yge")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
 position = Vector2(-0.028720897, 15.999974)
 rotation = -1.5690013
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Background" type="Sprite2D" parent="Sprite2D"]
+visibility_layer = 2
+z_index = -1
+position = Vector2(33.160995, 8.773434)
+scale = Vector2(1.0600907, 1.0634766)
+texture = ExtResource("4_1bvp3")
+offset = Vector2(640, 360)
 
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
