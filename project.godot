@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Cyberpunk Neon Dawn"
+run/main_scene="uid://c4ck1u04631r1"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 

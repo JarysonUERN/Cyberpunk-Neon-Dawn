@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c4ck1u04631r1"]
+[gd_scene load_steps=4 format=3 uid="uid://c4ck1u04631r1"]
 
 [ext_resource type="Texture2D" uid="uid://d2p360y7rl64" path="res://Assets/UI/menu/menu-splash.png" id="1_kaac3"]
+[ext_resource type="Script" uid="uid://bijv8auuipopw" path="res://Assets/UI/menu/menucontroller.gd" id="1_yg8pq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yg8pq"]
 font_size = 35
@@ -16,10 +17,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_yg8pq")
 
 [node name="MenuSplash" type="Sprite2D" parent="."]
-position = Vector2(532.00006, 333.21875)
-scale = Vector2(1.2329546, 1.3119055)
+position = Vector2(791.00006, 430.5)
+scale = Vector2(1.3821024, 1.3491848)
 texture = ExtResource("1_kaac3")
 
 [node name="Label" type="Label" parent="."]
@@ -65,7 +67,7 @@ theme_override_constants/line_spacing = 2
 theme_override_font_sizes/font_size = 26
 text = "Começar Jogo"
 
-[node name="Exit" type="Button" parent="VBoxContainer"]
+[node name="ExitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/outline_size = 5
 theme_override_constants/h_separation = 9
