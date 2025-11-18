@@ -1,14 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4ck1u04631r1"]
+[gd_scene load_steps=5 format=3 uid="uid://c4ck1u04631r1"]
 
 [ext_resource type="Texture2D" uid="uid://d2p360y7rl64" path="res://Assets/UI/menu/menu-splash.png" id="1_kaac3"]
 [ext_resource type="Script" uid="uid://bijv8auuipopw" path="res://Assets/UI/menu/menucontroller.gd" id="1_yg8pq"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_yg8pq"]
-font_size = 35
-outline_size = 8
-shadow_size = 42
-shadow_color = Color(0, 0, 0, 0.7921569)
-shadow_offset = Vector2(7.11, 11.055)
+[ext_resource type="AudioStream" uid="uid://itb6pcm2lxr3" path="res://Assets/music/Cyberpunk Soundtrack - I REALLY WANT TO STAY AT YOUR HOUSE (8 Bit Raxlen Slice Chiptune Remix) [oiftRT1xjrU].mp3" id="3_6s4cg"]
+[ext_resource type="Texture2D" uid="uid://cm1q62ipnw1ks" path="res://Assets/UI/menu/LogoMenu.png" id="3_r4lso"]
 
 [node name="menucontroller" type="Control"]
 layout_mode = 3
@@ -20,28 +15,9 @@ grow_vertical = 2
 script = ExtResource("1_yg8pq")
 
 [node name="MenuSplash" type="Sprite2D" parent="."]
-position = Vector2(791.00006, 430.5)
-scale = Vector2(1.3821024, 1.3491848)
+position = Vector2(675, 402.00003)
+scale = Vector2(1.046875, 1.120924)
 texture = ExtResource("1_kaac3")
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -580.0
-offset_right = 580.0
-offset_bottom = 296.0
-grow_horizontal = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = 103
-theme_override_constants/shadow_offset_x = 436
-theme_override_constants/shadow_offset_y = 236
-theme_override_constants/outline_size = 130
-text = "Cyberpunk: New Dawn"
-label_settings = SubResource("LabelSettings_yg8pq")
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -50,10 +26,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -216.0
-offset_top = -88.0
-offset_right = 216.0
-offset_bottom = 88.0
+offset_left = -280.0
+offset_top = -24.0
+offset_right = 316.0
+offset_bottom = 274.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 14
@@ -75,3 +51,28 @@ theme_override_constants/icon_max_width = 4
 theme_override_constants/align_to_largest_stylebox = 4
 theme_override_font_sizes/font_size = 24
 text = "Sair "
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="VBoxContainer"]
+stream = ExtResource("3_6s4cg")
+volume_db = -21.894
+autoplay = true
+attenuation = 0.35355353
+
+[node name="Container" type="Container" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LogoMenu" type="Sprite2D" parent="Container"]
+position = Vector2(10, -169)
+scale = Vector2(1.3451519, 1)
+texture = ExtResource("3_r4lso")

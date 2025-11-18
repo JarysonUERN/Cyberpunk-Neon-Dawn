@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://itb6pcm2lxr3"
+path="res://.godot/imported/Cyberpunk Soundtrack - I REALLY WANT TO STAY AT YOUR HOUSE (8 Bit Raxlen Slice Chiptune Remix) [oiftRT1xjrU].mp3-ed419f65f3ca6143f868000801390b29.mp3str"
+
+[deps]
+
+source_file="res://Assets/music/Cyberpunk Soundtrack - I REALLY WANT TO STAY AT YOUR HOUSE (8 Bit Raxlen Slice Chiptune Remix) [oiftRT1xjrU].mp3"
+dest_files=["res://.godot/imported/Cyberpunk Soundtrack - I REALLY WANT TO STAY AT YOUR HOUSE (8 Bit Raxlen Slice Chiptune Remix) [oiftRT1xjrU].mp3-ed419f65f3ca6143f868000801390b29.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
