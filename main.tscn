@@ -15,10 +15,11 @@ script = ExtResource("1_0xm2m")
 mob_scene = ExtResource("2_h2yge")
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(-198, 16)
+position = Vector2(-232, 144)
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
+autostart = true
 
 [node name="ScoreTimer" type="Timer" parent="."]
 
@@ -30,6 +31,7 @@ one_shot = true
 position = Vector2(240, 450)
 
 [node name="MobPath" type="Path2D" parent="."]
+position = Vector2(0, 8)
 rotation = -0.001795057
 curve = SubResource("Curve2D_h2yge")
 

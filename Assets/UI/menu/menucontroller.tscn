@@ -18,23 +18,19 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MenuSplash" type="Sprite2D" parent="."]
-position = Vector2(586, 329.125)
-scale = Vector2(0.8270597, 0.8780571)
+position = Vector2(532.00006, 333.21875)
+scale = Vector2(1.2329546, 1.3119055)
 texture = ExtResource("1_kaac3")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -876.0
-offset_top = -280.0
-offset_right = 187.0
-offset_bottom = -60.0
+offset_left = -580.0
+offset_right = 580.0
+offset_bottom = 296.0
 grow_horizontal = 2
-grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 103
 theme_override_constants/shadow_offset_x = 436
@@ -52,10 +48,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -546.0
-offset_top = -50.0
-offset_right = -179.0
-offset_bottom = 50.0
+offset_left = -216.0
+offset_top = -88.0
+offset_right = 216.0
+offset_bottom = 88.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 14
