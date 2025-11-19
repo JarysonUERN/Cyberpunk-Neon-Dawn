@@ -13,7 +13,12 @@ func new_game():
 	score = 0
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
-
+func play_music() -> void:
+	var music_player = $MusicPlayer
+	if music_player.stream == null:
+		music_player.stream = load("res://Assets/music/Who's Ready for Tomorrow (From Cyberpunk 2077) (8-Bit Rat Boy & IBDY Emulation) - 8-Bit Arcade (youtube).mp3")
+	play_music()
+	
 func _on_score_timer_timeout():
 	score += 1
 
