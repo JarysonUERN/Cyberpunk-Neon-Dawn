@@ -2,15 +2,13 @@ extends Node
 
 @export var mob_scene: PackedScene
 var score
-
 # Chamado quando o nó entra na árvore da cena pela primeira vez.
 func _ready():
 	new_game()
-
 func game_over():
 	$ScoreTimer.stop()
 	$MobTimer.stop()
-
+	pass 
 func new_game():
 	score = 0
 	$Player.start($StartPosition.position)
@@ -52,6 +50,7 @@ func _on_mob_timer_timeout():
 func _process(delta: float) -> void:
 	pass
 
-
 func _on_player_hit() -> void:
+	if $Player.morto == true:
+		get_tree().change_scene_to_file("res://Assets/UI/menu/gameover_menu.tscn")
 	pass # Replace with function body.

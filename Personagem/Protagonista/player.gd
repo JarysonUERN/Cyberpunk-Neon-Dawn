@@ -3,7 +3,7 @@ signal hit
 
 @export var speed = 400
 @export var player_size : Vector2 = Vector2(50, 50) 
-
+var morto = false
 var screen_size
 var extents # "Meio-tamanho" do jogador
 
@@ -53,6 +53,7 @@ func _process(delta):
 
 # Esta função está CORRETA. Ela esconde o jogador QUANDO ele é atingido.
 func _on_body_entered(_body):
+	morto = true
 	hide() # Player disappears after being hit.
 	hit.emit()
 	# Must be deferred as we can't change physics properties on a physics callback.
