@@ -1,5 +1,6 @@
 extends Area2D
 signal hit
+#sla
 
 @export var speed = 400
 @export var player_size : Vector2 = Vector2(50, 50) 

@@ -143,13 +143,13 @@ script = ExtResource("1_onrkg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visibility_layer = 2
-position = Vector2(323, 183)
+position = Vector2(300.00003, 231)
 scale = Vector2(3.234127, 3.2341273)
 sprite_frames = SubResource("SpriteFrames_bwjto")
 animation = &"jump"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(316, 231.5)
+position = Vector2(431.00003, 235)
 scale = Vector2(12.9, 1)
 shape = SubResource("SegmentShape2D_auvcu")
 
