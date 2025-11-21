@@ -15,8 +15,8 @@ grow_vertical = 2
 script = ExtResource("1_yg8pq")
 
 [node name="MenuSplash" type="Sprite2D" parent="."]
-position = Vector2(675, 402.00003)
-scale = Vector2(1.046875, 1.120924)
+position = Vector2(677.99994, 397.75003)
+scale = Vector2(0.9786932, 1.1093751)
 texture = ExtResource("1_kaac3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -42,6 +42,15 @@ theme_override_constants/align_to_largest_stylebox = 5
 theme_override_constants/line_spacing = 2
 theme_override_font_sizes/font_size = 26
 text = "Começar Jogo"
+
+[node name="MenuOption" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 6
+theme_override_constants/h_separation = 17
+theme_override_constants/align_to_largest_stylebox = 5
+theme_override_constants/line_spacing = 2
+theme_override_font_sizes/font_size = 26
+text = "Opções"
 
 [node name="ExitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -73,6 +82,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="LogoMenu" type="Sprite2D" parent="Container"]
-position = Vector2(10, -169)
+position = Vector2(28, -197)
 scale = Vector2(1.3451519, 1)
 texture = ExtResource("3_r4lso")
