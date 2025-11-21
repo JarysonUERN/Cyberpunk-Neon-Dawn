@@ -1,7 +1,32 @@
-[gd_scene load_steps=11 format=3 uid="uid://jks2ow6y7ebj"]
+[gd_scene load_steps=18 format=3 uid="uid://jks2ow6y7ebj"]
 
 [ext_resource type="Script" uid="uid://8araj7aoqdhr" path="res://Personagem/Vilao01/mob.gd" id="1_0pc27"]
 [ext_resource type="Texture2D" uid="uid://b1k3j356h5tq7" path="res://Personagem/Vilao01/3 Cyborg/Cyborg_run.png" id="1_ih82e"]
+[ext_resource type="Texture2D" uid="uid://ddw62f7b68mjq" path="res://Personagem/Vilao01/3 Cyborg/Cyborg_attack1.png" id="2_gjeh0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1n6fv"]
+atlas = ExtResource("2_gjeh0")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lyklk"]
+atlas = ExtResource("2_gjeh0")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62nhu"]
+atlas = ExtResource("2_gjeh0")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_esokc"]
+atlas = ExtResource("2_gjeh0")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7nxy"]
+atlas = ExtResource("2_gjeh0")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1j0g"]
+atlas = ExtResource("2_gjeh0")
+region = Rect2(240, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0pc27"]
 atlas = ExtResource("1_ih82e")
@@ -29,6 +54,29 @@ region = Rect2(240, 0, 48, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lgadl"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1n6fv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lyklk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62nhu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_esokc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7nxy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1j0g")
+}],
+"loop": true,
+"name": &"attack 01",
+"speed": 5.0
+}, {
 "frames": [],
 "loop": true,
 "name": &"default",
@@ -62,7 +110,7 @@ animations = [{
 a = Vector2(1.7167358, -14.225296)
 b = Vector2(-3.4334717, 18.069977)
 
-[node name="Turba" type="RigidBody2D"]
+[node name="mob" type="RigidBody2D"]
 collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_0pc27")
@@ -71,9 +119,7 @@ script = ExtResource("1_0pc27")
 position = Vector2(632.25, 244.75002)
 scale = Vector2(3.010417, 3.010417)
 sprite_frames = SubResource("SpriteFrames_lgadl")
-animation = &"walk"
-frame = 5
-frame_progress = 0.7380462
+animation = &"attack 01"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(613, 266)
