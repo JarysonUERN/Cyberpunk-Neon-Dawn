@@ -13,24 +13,16 @@ func new_game():
 	score = 0
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
-<<<<<<< HEAD
 func play_music() -> void:
 	var music_player = $MusicPlayer
 	if music_player.stream == null:
 		music_player.stream = load("res://Assets/music/Who's Ready for Tomorrow (From Cyberpunk 2077) (8-Bit Rat Boy & IBDY Emulation) - 8-Bit Arcade (youtube).mp3")
 	play_music()
 	
-=======
-<<<<<<< HEAD
-	play_music() # Inicia a música quando o jogo começa
-
-func play_music() -> void:
-	# Se você não tiver um nó AudioStreamPlayer chamado "MusicPlayer", isso dará erro.
-	# Certifique-se de criar o nó na cena Main.
 	if has_node("MusicPlayer"):
-		var music_player = $MusicPlayer
-		if music_player.stream == null:
-			music_player.stream = load("res://Assets/music/Who's Ready for Tomorrow (From Cyberpunk 2077) (8-Bit Rat Boy & IBDY Emulation) - 8-Bit Arcade (youtube).mp3")
+		var music_player2 = $MusicPlayer
+		if music_player2.stream == null:
+			music_player2.stream = load("res://Assets/music/Who's Ready for Tomorrow (From Cyberpunk 2077) (8-Bit Rat Boy & IBDY Emulation) - 8-Bit Arcade (youtube).mp3")
 		
 		# --- CORREÇÃO AQUI ---
 		# Antes estava 'play_music()' (chamava a função de novo -> loop infinito)
@@ -39,10 +31,7 @@ func play_music() -> void:
 			music_player.play()
 	else:
 		print("Aviso: Nó 'MusicPlayer' não encontrado na cena Main.")
-=======
->>>>>>> parent of 7293198 (musica no jogo)
 
->>>>>>> 51be0974e8a4d3851969d83bde47137ab3ce70b6
 func _on_score_timer_timeout():
 	score += 1
 
