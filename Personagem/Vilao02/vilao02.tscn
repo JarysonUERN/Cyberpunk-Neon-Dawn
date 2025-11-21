@@ -1,0 +1,97 @@
+[gd_scene load_steps=18 format=3 uid="uid://b58ar5k7snqpg"]
+
+[ext_resource type="Texture2D" uid="uid://sec0c0m0ckij" path="res://Personagem/Vilao02/sprite/Hurt/hurt1.png" id="1_cag64"]
+[ext_resource type="Script" uid="uid://c7vla0w5xes5u" path="res://Personagem/Vilao02/vilao_02.gd" id="1_fqvym"]
+[ext_resource type="Texture2D" uid="uid://1r3xnjugd8fl" path="res://Personagem/Vilao02/sprite/Hurt/hurt2.png" id="2_fqvym"]
+[ext_resource type="Texture2D" uid="uid://c5gvhku8e5h87" path="res://Personagem/Vilao02/sprite/Hurt/hurt3.png" id="3_oto88"]
+[ext_resource type="Texture2D" uid="uid://d4aj837y3k5u3" path="res://Personagem/Vilao02/sprite/Hurt/hurt4.png" id="4_g0sy3"]
+[ext_resource type="Texture2D" uid="uid://cxbwvc3du0gw8" path="res://Personagem/Vilao02/sprite/Idle/idle1.png" id="5_qnxhd"]
+[ext_resource type="Texture2D" uid="uid://daqnhsigd5wj2" path="res://Personagem/Vilao02/sprite/Idle/idle2.png" id="6_0hkrn"]
+[ext_resource type="Texture2D" uid="uid://biflt4prlva5a" path="res://Personagem/Vilao02/sprite/Idle/idle3.png" id="7_4h6uk"]
+[ext_resource type="Texture2D" uid="uid://doiqxus41kug" path="res://Personagem/Vilao02/sprite/Idle/idle4.png" id="8_5yet1"]
+[ext_resource type="Texture2D" uid="uid://ehiaulqs6oe" path="res://Personagem/Vilao02/sprite/Punch/punch1.png" id="9_2yw7r"]
+[ext_resource type="Texture2D" uid="uid://cvtj6e0bodtr5" path="res://Personagem/Vilao02/sprite/Punch/punch2.png" id="10_qjxrf"]
+[ext_resource type="Texture2D" uid="uid://dk3cwiodndawg" path="res://Personagem/Vilao02/sprite/Punch/punch3.png" id="11_tib48"]
+[ext_resource type="Texture2D" uid="uid://d14bx78ynwv7n" path="res://Personagem/Vilao02/sprite/Walk/walk1.png" id="12_g5x8r"]
+[ext_resource type="Texture2D" uid="uid://b4imosv3vi2qh" path="res://Personagem/Vilao02/sprite/Walk/walk2.png" id="13_kraav"]
+[ext_resource type="Texture2D" uid="uid://c6koe66eswva0" path="res://Personagem/Vilao02/sprite/Walk/walk3.png" id="14_k1pfl"]
+[ext_resource type="Texture2D" uid="uid://dgmkwfktoob31" path="res://Personagem/Vilao02/sprite/Walk/walk4.png" id="15_h58gl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s8lms"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_cag64")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_fqvym")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_oto88")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_g0sy3")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_qnxhd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_0hkrn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_4h6uk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_5yet1")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_2yw7r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_qjxrf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_tib48")
+}],
+"loop": true,
+"name": &"punch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_g5x8r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_kraav")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_k1pfl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_h58gl")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="mob02" type="RigidBody2D"]
+script = ExtResource("1_fqvym")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_s8lms")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
