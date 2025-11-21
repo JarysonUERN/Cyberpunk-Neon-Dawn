@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dmcvipjn467h1" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://cwccglpf7vhl1" path="res://Personagem/Protagonista/player.tscn" id="1_ig7tw"]
-[ext_resource type="Script" uid="uid://8araj7aoqdhr" path="res://Personagem/Vilao01/mob.gd" id="3_lquwl"]
+[ext_resource type="PackedScene" uid="uid://jks2ow6y7ebj" path="res://Personagem/Vilao01/mob.tscn" id="2_h2yge"]
 [ext_resource type="Texture2D" uid="uid://dw38l4gckt2ji" path="res://CityLayers-20251118T112244Z-1-001/Cenário01.png" id="4_1bvp3"]
 [ext_resource type="AudioStream" uid="uid://b35h6bm75jcto" path="res://Assets/music/Who's Ready for Tomorrow (From Cyberpunk 2077) (8-Bit Rat Boy & IBDY Emulation) - 8-Bit Arcade (youtube).mp3" id="5_lquwl"]
 
@@ -14,6 +14,7 @@ point_count = 19
 
 [node name="Main" type="Node"]
 script = ExtResource("1_0xm2m")
+mob_scene = ExtResource("2_h2yge")
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
 position = Vector2(-184, 104)
@@ -35,7 +36,6 @@ position = Vector2(240, 450)
 position = Vector2(192, 40)
 rotation = -0.001795057
 curve = SubResource("Curve2D_h2yge")
-script = ExtResource("3_lquwl")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
 position = Vector2(-0.028720897, 15.999974)
