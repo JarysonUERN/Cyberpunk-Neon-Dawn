@@ -8,6 +8,9 @@ shader = ExtResource("2")
 shader_parameter/new_color = Color(0.06, 1, 0.655333, 1)
 
 [node name="Fighter Girl" instance=ExtResource("1")]
+position = Vector2(875, 403)
+collision_layer = 4
+collision_mask = 3
 
 [node name="Idle" parent="State Machine" index="0"]
 left = "p2_left"
@@ -83,6 +86,7 @@ block = "p2_block"
 
 [node name="Sprite" parent="." index="3"]
 material = SubResource("ShaderMaterial_esh3e")
+position = Vector2(-5, 0)
 flip_h = true
 
 [node name="HealthBar" parent="CanvasLayer" index="0"]

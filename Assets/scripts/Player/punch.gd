@@ -1,70 +1,99 @@
-class_name State
-extends Node
+extends State # (ou extends State)
 
-# --- CONFIGURAÇÕES ---
-var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
-var move_speed: float = 200.0
-var jump_force: float = 450.0
-var player: CharacterBody2D
+@export var return_state: State
+@export var hitbox: Area2D
 
-@export var damage_amt: int = 10
-
-# --- ESTADOS ---
-@export var animation_name: String
-@export var idle_state: State
-@export var walk_state: State
-@export var jump_state: State
-@export var fall_state: State
-@export var punch_state: State
-@export var kick_state: State
-@export var block_state: State
-@export var jump_kick_state: State
-
-# --- TECLAS ---
-@export var left: String = "p1_left"
-@export var right: String = "p1_right"
-@export var jump: String = "p1_jump"
-@export var punch: String = "p1_punch"
-@export var kick: String = "p1_kick"
-@export var block: String = "p1_block"
+# --- CORREÇÃO: REMOVIDA A LINHA ABAIXO POIS JÁ EXISTE NO PAI (State.gd) ---
+# @export var damage_amt: int = 10 
 
 func enter() -> void:
-	# --- CORREÇÃO PARA ANIMATION PLAYER ---
-	# O seu nó de animação se chama "Player" (o rolo de filme 🎞️)
-	# Mas a variável 'player' já é o personagem. Vamos usar get_node para achar o animador.
+	if player == null:
+		player = get_parent().get_parent()
+		if player == null: player = owner
+
+	player.velocity.x = 0
 	
-	if player.has_node("Player"): # Procura o nó com ícone de filme
-		var animador = player.get_node("Player")
+	# --- LIGAR HITBOX COM DIAGNÓSTICO ---
+	if hitbox:
+		hitbox.monitoring = true
+		if not hitbox.body_entered.is_connected(_on_body_entered):
+			hitbox.body_entered.connect(_on_body_entered)
+		print(">> Soco INICIADO. Hitbox ativada e monitorando!")
+	else:
+		print(">> ERRO CRÍTICO: Campo 'Hitbox' vazio no Inspector do Punch!")
+	
+	# Conexão da animação
+	var animador = null
+	if player.has_node("Player"):
+		animador = player.get_node("Player")
+		if not animador.animation_finished.is_connected(_on_animation_finished):
+			animador.animation_finished.connect(_on_animation_finished)
+	elif player.has_node("Sprite"):
+		animador = player.get_node("Sprite")
+		if not animador.animation_finished.is_connected(_on_animation_finished):
+			animador.animation_finished.connect(_on_animation_finished)
+
+	super()
+	
+	# Timer de segurança
+	if animador:
+		var tempo = animador.current_animation_length
+		if tempo <= 0: tempo = 0.5
+		await get_tree().create_timer(tempo + 0.05).timeout
+		if player.current_state == self:
+			_on_animation_finished(animation_name)
+
+func _on_body_entered(body):
+	print("\n--- 🔍 DIAGNÓSTICO DE COLISÃO ---")
+	print(">> A Hitbox tocou em algo: ", body.name)
+	
+	if body == player:
+		print(">> É o próprio jogador. Ignorando.")
+		return
 		
-		# Verifica se é mesmo um AnimationPlayer
-		if animador is AnimationPlayer:
-			if animador.has_animation(animation_name):
-				animador.play(animation_name)
-			else:
-				print("ERRO: O AnimationPlayer não tem a animação: ", animation_name)
-	
-	# Caso você mude de ideia e use AnimatedSprite2D no futuro
-	elif player.has_node("AnimatedSprite2D"):
-		player.get_node("AnimatedSprite2D").play(animation_name)
+	# Verifica se o corpo tem o nó de vida (Health)
+	if body.has_node("Health"):
+		print(">> SUCESSO: Encontrei o nó 'Health' em ", body.name)
+		var health_script = body.get_node("Health")
+		
+		if health_script.has_method("deal_damage"):
+			# damage_amt vem do script Pai (State.gd) automaticamente!
+			print(">> SUCESSO: O script tem 'deal_damage'. Aplicando ", damage_amt, " de dano.")
+			health_script.deal_damage(damage_amt)
+			
+			if hitbox:
+				hitbox.set_deferred("monitoring", false)
+		else:
+			print(">> ERRO: O nó 'Health' existe, mas NÃO tem a função 'deal_damage' no script!")
+			
+	elif body.has_node("HealthManager"):
+		print(">> AVISO: Encontrei 'HealthManager' em vez de 'Health'. Atualize o código se for esse o nome!")
+		
+	else:
+		print(">> ERRO: O corpo ", body.name, " NÃO tem um nó chamado 'Health'.")
+		print(">> Lista de filhos encontrados em ", body.name, ":")
+		for child in body.get_children():
+			print("   - ", child.name)
+	print("----------------------------------\n")
+
+func _on_animation_finished(anim_name = ""):
+	if anim_name == animation_name or anim_name == "":
+		if return_state:
+			player.change_state(return_state)
 
 func exit() -> void:
-	pass
-
-func process_input(event: InputEvent) -> State:
-	if player.is_on_floor():
-		if event.is_action_pressed(jump):
-			return jump_state
-		if event.is_action_pressed(punch):
-			return punch_state
-		if event.is_action_pressed(kick):
-			return kick_state
-		if event.is_action_pressed(block):
-			return block_state
-	return null
+	super()
+	if hitbox:
+		hitbox.monitoring = false
+		if hitbox.body_entered.is_connected(_on_body_entered):
+			hitbox.body_entered.disconnect(_on_body_entered)
+	
+	if player.has_node("Player"):
+		var animador = player.get_node("Player")
+		if animador.animation_finished.is_connected(_on_animation_finished):
+			animador.animation_finished.disconnect(_on_animation_finished)
 
 func process_physics(delta: float) -> State:
 	player.velocity.y += gravity * delta
 	player.move_and_slide()
-	if !player.is_on_floor():
-		return fall_state
 	return null

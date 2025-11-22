@@ -945,13 +945,20 @@ position = Vector2(0, -1)
 script = ExtResource("9")
 return_state = NodePath("../Idle")
 hitbox = NodePath("Punch")
+damage_amt = null
 animation_name = "Punch"
 idle_state = NodePath("../Idle")
 walk_state = NodePath("../Walk")
 punch_state = NodePath(".")
+left = null
+right = null
+jump = null
+punch = null
+kick = null
+block = null
 
 [node name="Punch" type="Area2D" parent="State Machine/Punch"]
-collision_layer = 0
+collision_layer = 4
 collision_mask = 4
 script = ExtResource("10")
 
