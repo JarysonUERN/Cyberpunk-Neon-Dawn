@@ -922,14 +922,9 @@ punch = null
 kick = null
 block = null
 
-[node name="Jump" type="Node2D" parent="State Machine" node_paths=PackedStringArray("idle_state", "walk_state", "jump_state", "fall_state", "jump_kick_state")]
+[node name="Jump" type="Node2D" parent="State Machine"]
 script = ExtResource("5")
 animation_name = "Jump"
-idle_state = NodePath("../Idle")
-walk_state = NodePath("../Walk")
-jump_state = NodePath("../Fall")
-fall_state = NodePath("../Fall")
-jump_kick_state = NodePath("../Jump Kick")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="State Machine/Jump"]
 stream = ExtResource("6")

@@ -1,32 +1,31 @@
-extends State
+extends State # Se você não mudou o nome da classe Pai, use "extends State"
 
 func enter() -> void:
-	# Chama o pai para tocar a animação (definida no Inspector como "Run" ou "Walk")
-	super() 
+	# --- A MÁGICA DA ANIMAÇÃO ---
+	# Essa linha manda o script Pai ler o "Animation Name" do Inspector ("Walk")
+	# e mandar o Sprite tocar essa animação.
+	super()
 
 func process_physics(delta: float) -> State:
-	# 1. PEGAR COMANDO: Usa as variáveis 'left' e 'right' que configuramos no script Pai
+	# 1. Lê as teclas (usando as variáveis configuradas no Pai: p1_left / p1_right)
 	var direction = Input.get_axis(left, right)
 	
-	# 2. REGRA DE SAÍDA: Se soltou as teclas (valor 0), volta para IDLE
+	# 2. Se parou de andar, volta para IDLE
 	if direction == 0:
 		return idle_state
 	
-	# 3. VISUAL: Virar o boneco para o lado certo
-	if player.get_node_or_null("AnimatedSprite2D"):
-		var sprite = player.get_node("AnimatedSprite2D")
-		if direction < 0:
-			sprite.flip_h = true  # Esquerda
-		elif direction > 0:
-			sprite.flip_h = false # Direita
-			
-	# 4. FÍSICA: Aplicar velocidade
+	# 3. Vira o boneco para o lado certo
+	# Usamos get_node("Sprite") porque esse é o nome na sua árvore de cena
+	var visual = player.get_node("Sprite")
+	
+	if direction < 0:
+		visual.flip_h = true  # Olha para esquerda
+	elif direction > 0:
+		visual.flip_h = false # Olha para direita
+		
+	# 4. Define a velocidade
 	player.velocity.x = direction * move_speed
 	
-	# 5. GRAVIDADE: Chama o pai para aplicar gravidade e mover
-	# Isso é importante porque o Pai também verifica se caiu num buraco (Fall State)
-	var next_state = super.process_physics(delta)
-	if next_state != null:
-		return next_state
-		
-	return null
+	# 5. Chama o Pai para aplicar gravidade e mover
+	# Isso também verifica se ele caiu num buraco (Fall State)
+	return super.process_physics(delta)

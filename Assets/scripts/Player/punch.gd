@@ -1,17 +1,15 @@
 class_name State
 extends Node
 
-# --- CONFIGURAÇÕES FÍSICAS ---
+# --- CONFIGURAÇÕES ---
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 var move_speed: float = 200.0
 var jump_force: float = 450.0
 var player: CharacterBody2D
 
-# --- COMBATE ---
-# Restaurei esta linha que estava faltando:
-@export var damage_amt: int = 10 
+@export var damage_amt: int = 10
 
-# --- REFERÊNCIAS DE ESTADOS ---
+# --- ESTADOS ---
 @export var animation_name: String
 @export var idle_state: State
 @export var walk_state: State
@@ -22,7 +20,7 @@ var player: CharacterBody2D
 @export var block_state: State
 @export var jump_kick_state: State
 
-# --- MAPEAMENTO DE TECLAS ---
+# --- TECLAS ---
 @export var left: String = "p1_left"
 @export var right: String = "p1_right"
 @export var jump: String = "p1_jump"
@@ -31,10 +29,23 @@ var player: CharacterBody2D
 @export var block: String = "p1_block"
 
 func enter() -> void:
-	if player.has_node("AnimatedSprite2D"):
+	# --- CORREÇÃO PARA ANIMATION PLAYER ---
+	# O seu nó de animação se chama "Player" (o rolo de filme 🎞️)
+	# Mas a variável 'player' já é o personagem. Vamos usar get_node para achar o animador.
+	
+	if player.has_node("Player"): # Procura o nó com ícone de filme
+		var animador = player.get_node("Player")
+		
+		# Verifica se é mesmo um AnimationPlayer
+		if animador is AnimationPlayer:
+			if animador.has_animation(animation_name):
+				animador.play(animation_name)
+			else:
+				print("ERRO: O AnimationPlayer não tem a animação: ", animation_name)
+	
+	# Caso você mude de ideia e use AnimatedSprite2D no futuro
+	elif player.has_node("AnimatedSprite2D"):
 		player.get_node("AnimatedSprite2D").play(animation_name)
-	elif player.has_method("play_animation"):
-		player.play_animation(animation_name)
 
 func exit() -> void:
 	pass
@@ -51,13 +62,9 @@ func process_input(event: InputEvent) -> State:
 			return block_state
 	return null
 
-func process_frame(delta: float) -> State:
-	return null
-
 func process_physics(delta: float) -> State:
 	player.velocity.y += gravity * delta
 	player.move_and_slide()
-	
 	if !player.is_on_floor():
 		return fall_state
 	return null

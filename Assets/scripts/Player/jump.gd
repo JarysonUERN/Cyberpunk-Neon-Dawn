@@ -12,8 +12,8 @@ func process_physics(delta: float) -> State:
 	
 	# Virar o sprite no ar
 	if movement != 0:
-		if player.has_node("AnimatedSprite2D"):
-			player.get_node("AnimatedSprite2D").flip_h = (movement < 0)
+		if player.has_node("Sprite"):
+			player.get_node("Sprite").flip_h = (movement < 0)
 
 	# 2. Gravidade
 	player.velocity.y += gravity * delta

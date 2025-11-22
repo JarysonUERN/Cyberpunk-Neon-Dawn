@@ -1,6 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
+
 # Referência para o nó que segura os estados
 @onready var state_machine = $"State Machine"
 @onready var animated_sprite = $AnimatedSprite2D

@@ -681,7 +681,7 @@ position = Vector2(305, 0)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
-position = Vector2(680, 249)
+position = Vector2(682, 264)
 shape = SubResource("RectangleShape2D_5vw27")
 
 [node name="Wall" type="StaticBody2D" parent="Wall2/CollisionShape2D"]

@@ -906,7 +906,6 @@ jump_kick_state = NodePath(".")
 
 [node name="Walk" type="Node2D" parent="State Machine" node_paths=PackedStringArray("idle_state", "walk_state", "jump_state", "fall_state", "punch_state", "kick_state", "block_state")]
 script = ExtResource("4")
-damage_amt = null
 animation_name = "Walk"
 idle_state = NodePath("../Idle")
 walk_state = NodePath(".")
@@ -915,19 +914,13 @@ fall_state = NodePath("../Fall")
 punch_state = NodePath("../Punch")
 kick_state = NodePath("../Kick")
 block_state = NodePath("../Block")
-left = null
-right = null
-jump = null
-punch = null
-kick = null
-block = null
 
 [node name="Jump" type="Node2D" parent="State Machine" node_paths=PackedStringArray("idle_state", "walk_state", "jump_state", "fall_state", "jump_kick_state")]
 script = ExtResource("5")
 animation_name = "Jump"
 idle_state = NodePath("../Idle")
 walk_state = NodePath("../Walk")
-jump_state = NodePath("../Fall")
+jump_state = NodePath("../Idle")
 fall_state = NodePath("../Fall")
 jump_kick_state = NodePath("../Jump Kick")
 
@@ -948,10 +941,17 @@ stream = ExtResource("8")
 [node name="Punch" type="Node2D" parent="State Machine" node_paths=PackedStringArray("idle_state", "block_state", "jump_kick_state")]
 position = Vector2(0, -1)
 script = ExtResource("9")
+damage_amt = null
 animation_name = "Punch"
 idle_state = NodePath("../Idle")
 block_state = NodePath("../Block")
 jump_kick_state = NodePath("../Jump Kick")
+left = null
+right = null
+jump = null
+punch = null
+kick = null
+block = null
 
 [node name="Punch" type="Area2D" parent="State Machine/Punch"]
 script = ExtResource("10")

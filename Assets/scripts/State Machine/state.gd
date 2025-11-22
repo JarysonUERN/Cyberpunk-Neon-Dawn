@@ -7,7 +7,10 @@ var move_speed: float = 200.0
 var jump_force: float = 450.0
 var player: CharacterBody2D
 
-# --- REFERÊNCIAS DE ESTADOS (Adicionei o jump_kick_state aqui) ---
+# --- COMBATE (Essa estava faltando!) ---
+@export var damage_amt: int = 10
+
+# --- REFERÊNCIAS DE ESTADOS ---
 @export var animation_name: String
 @export var idle_state: State
 @export var walk_state: State
@@ -16,7 +19,7 @@ var player: CharacterBody2D
 @export var punch_state: State
 @export var kick_state: State
 @export var block_state: State
-@export var jump_kick_state: State  # <--- ESSA ERA A PEÇA QUE FALTAVA!
+@export var jump_kick_state: State
 
 # --- MAPEAMENTO DE TECLAS ---
 @export var left: String = "p1_left"
@@ -27,11 +30,20 @@ var player: CharacterBody2D
 @export var block: String = "p1_block"
 
 func enter() -> void:
-	# Tenta tocar a animação se o player tiver o componente correto
-	if player.has_node("AnimatedSprite2D"):
-		player.get_node("AnimatedSprite2D").play(animation_name)
-	elif player.has_method("play_animation"): # Caso seu player tenha um método customizado
-		player.play_animation(animation_name)
+	# Prioridade 1: Tenta achar o nó com o nome "Sprite" (O seu caso)
+	if player.has_node("Sprite"):
+		var sprite = player.get_node("Sprite")
+		if animation_name != "":
+			if sprite.sprite_frames.has_animation(animation_name):
+				sprite.play(animation_name)
+			else:
+				print("AVISO: O Sprite não tem a animação '", animation_name, "'")
+		
+	# Prioridade 2: Tenta achar o AnimatedSprite2D (Caso mude no futuro)
+	elif player.has_node("AnimatedSprite2D"):
+		var sprite = player.get_node("AnimatedSprite2D")
+		if animation_name != "":
+			sprite.play(animation_name)
 
 func exit() -> void:
 	pass

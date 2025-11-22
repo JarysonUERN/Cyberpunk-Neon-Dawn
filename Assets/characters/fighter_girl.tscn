@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cntwf33ussx36"]
 
 [ext_resource type="PackedScene" uid="uid://djqjols3si08e" path="res://Assets/characters/brawler_girl.tscn" id="1"]
-[ext_resource type="Shader" uid="uid://cjqcf4mpns0pv" path="res://assets/sprites/Brawler Girl/brawler_girl.gdshader" id="2"]
+[ext_resource type="Shader" uid="uid://cjqcf4mpns0pv" path="res://Assets/sprites/Brawler Girl/brawler_girl.gdshader" id="2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_esh3e"]
 shader = ExtResource("2")
