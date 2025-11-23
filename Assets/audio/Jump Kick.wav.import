@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b111un2fcplme"
+path="res://.godot/imported/Jump Kick.wav-988d37137208ef12bb5ea9ce57ae9059.sample"
+
+[deps]
+
+source_file="res://Assets/audio/Jump Kick.wav"
+dest_files=["res://.godot/imported/Jump Kick.wav-988d37137208ef12bb5ea9ce57ae9059.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=96000
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=0
+compress/mode=0

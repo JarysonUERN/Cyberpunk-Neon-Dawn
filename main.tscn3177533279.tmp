@@ -628,7 +628,7 @@ texture = ExtResource("4_4c57u")
 5:7/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_w48qg"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 2
 sources/0 = SubResource("TileSetAtlasSource_dg77c")
 sources/1 = SubResource("TileSetAtlasSource_ycdy4")
 
@@ -671,15 +671,10 @@ script = ExtResource("3_lquwl")
 
 [node name="Fighter Girl" parent="." instance=ExtResource("3_1bvp3")]
 position = Vector2(678, 365)
-collision_layer = 1
-collision_mask = 2
 script = ExtResource("3_lquwl")
 health = 100
 freeze_slow = 0.01
 freeze_time = 1000000.0
-
-[node name="HealthManager" type="Node" parent="Fighter Girl"]
-script = ExtResource("3_lquwl")
 
 [node name="Wall2" type="StaticBody2D" parent="."]
 position = Vector2(305, 0)
