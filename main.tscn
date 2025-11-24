@@ -633,7 +633,7 @@ sources/0 = SubResource("TileSetAtlasSource_dg77c")
 sources/1 = SubResource("TileSetAtlasSource_ycdy4")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kek77"]
-size = Vector2(79, 375.4375)
+size = Vector2(38.5, 376.28125)
 
 [node name="Main" type="Node"]
 script = ExtResource("1_0xm2m")
@@ -684,9 +684,9 @@ script = ExtResource("3_lquwl")
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1110, 212.4375)
+position = Vector2(1130.25, 212.85938)
 shape = SubResource("RectangleShape2D_kek77")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(106, 223.71875)
+position = Vector2(81, 224)
 shape = SubResource("RectangleShape2D_kek77")

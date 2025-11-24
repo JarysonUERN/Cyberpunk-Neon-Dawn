@@ -15,8 +15,8 @@ grow_vertical = 2
 script = ExtResource("1_yg8pq")
 
 [node name="MenuSplash" type="Sprite2D" parent="."]
-position = Vector2(677.99994, 397.75003)
-scale = Vector2(0.9786932, 1.1093751)
+position = Vector2(943.5, 524.25)
+scale = Vector2(1.355824, 1.4531251)
 texture = ExtResource("1_kaac3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
