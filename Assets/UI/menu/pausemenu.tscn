@@ -1,0 +1,91 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxcvvsk2m6ked"]
+
+[ext_resource type="Script" uid="uid://cwxt37nlihlhl" path="res://Assets/UI/menu/pausemenu.gd" id="1_oquo2"]
+[ext_resource type="Texture2D" uid="uid://bcet5ddchstfl" path="res://Assets/UI/menu/pausemenuwallpaper.jpg" id="2_o7a3a"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oquo2")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -641.0
+offset_top = -369.5
+offset_right = 641.0
+offset_bottom = 369.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pausemenuwallpaper" type="Sprite2D" parent="."]
+position = Vector2(921.99994, 540.5)
+scale = Vector2(0.5276041, 0.67666864)
+texture = ExtResource("2_o7a3a")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -10.0
+offset_right = 2.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextEdit" type="TextEdit" parent="Label"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -202.0
+offset_top = -209.0
+offset_right = 228.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/caret_width = 16
+theme_override_constants/outline_size = -70
+theme_override_font_sizes/font_size = 53
+text = "        Pausado"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Label"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -322.0
+offset_top = -70.0
+offset_right = 169.47986
+offset_bottom = 123.28223
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.335, 1.335)
+pivot_offset = Vector2(0.375, 0.095)
+theme_override_constants/separation = 14
+
+[node name="RestartButton" type="Button" parent="Label/VBoxContainer"]
+layout_mode = 2
+text = "Voltar"
+
+[node name="MainmenuButton" type="Button" parent="Label/VBoxContainer"]
+layout_mode = 2
+text = "Menu Principal"
+
+[node name="ExitButton" type="Button" parent="Label/VBoxContainer"]
+layout_mode = 2
+text = "Área de Trabalho"

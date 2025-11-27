@@ -1542,6 +1542,8 @@ position_smoothing_enabled = true
 script = ExtResource("6_efxa6")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -20.8
+pitch_scale = 0.85
 
 [node name="TieSound" type="AudioStreamPlayer" parent="."]
 

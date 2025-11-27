@@ -4,7 +4,7 @@ func _ready() -> void:
 	play_music
 	$VBoxContainer/ExitButton.pressed.connect(_on_exit_pressed)
 	$VBoxContainer/Start.pressed.connect(start_main)
-	
+	$VBoxContainer/MenuOption.pressed.connect(options)
 func _on_exit_pressed() -> void:
 	get_tree().quit()
 func play_music() -> void:
@@ -15,3 +15,6 @@ func play_music() -> void:
 	
 func start_main() -> void:
 	get_tree().change_scene_to_file("res://main.tscn")
+	
+func options():
+	get_tree().change_scene_to_file("res://Assets/UI/menu/optionsmenu.tscn")

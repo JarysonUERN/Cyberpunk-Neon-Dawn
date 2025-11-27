@@ -6,7 +6,7 @@ extends Node
 
 # --- CORREÇÃO AQUI: Atualize o caminho para o novo nome que você deu ---
 # Se o nó da barra agora se chama "health___bar", o caminho deve ser este:
-@onready var health_bar = $"../CanvasLayer/HealthBar"
+@onready var health_bar = $"res://Assets/health_bar/health_bar.tscn"
 
 # Alternativa: Se "health___bar" for uma pasta e o nó ainda for HealthBar:
 # @onready var health_bar = $"../CanvasLayer/health___bar/HealthBar"
