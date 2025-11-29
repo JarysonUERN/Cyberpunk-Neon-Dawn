@@ -38,7 +38,8 @@ func process_physics(delta: float) -> State:
 			return fall_state
 		else:
 			return idle_state
-
+func process_input(event: InputEvent) -> State:
+	return null
 func exit() -> void:
 	super()
 	player.velocity.x = 0
