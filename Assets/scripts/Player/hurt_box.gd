@@ -11,8 +11,7 @@ extends Area2D
 func on_area_entered(hitbox) -> void:
 	if hitbox == null:
 		return
-	
-	# 1. Dano
+
 	var damage_amount = 0
 	if "damage" in hitbox:
 		damage_amount = hitbox.damage
@@ -23,29 +22,23 @@ func on_area_entered(hitbox) -> void:
 		particles.gravity = particles.gravity.length() * direction
 		particles.emitting = true
 	
-	# 3. CORREÇÃO FÍSICA (O Segredo)
-	# Calculamos a direção, mas ZERAMOS o eixo Y para ele não voar
 	var diff_vector = global_position - hitbox.global_position
-	diff_vector.y = 0 # Força o vetor a ser reto horizontalmente
+	diff_vector.y = 0 
 	
 	var push_dir = diff_vector.normalized()
 	
-	# Aplica uma velocidade horizontal forte
+
 	player.velocity = push_dir * 400 
 	
-	# 4. Câmera
 	if camera and camera.has_method("shake"):
 		camera.shake_str = 1.0 
 	
-	# 5. Troca de Estado
-	var is_blocking = (state_machine.current_state == block_state)
+	var is_blocking = (player.current_state == block_state)
 		
 	if not is_blocking:
 		if health_node:
 			health_node.deal_damage(damage_amount)
-		
-		state_machine.can_change_state_to_true()
-		state_machine.change_state(hurt_state)
+		player.change_state(hurt_state)
 	else:
 		var audio = $"../../Block/AudioStreamPlayer"
 		if audio: audio.play()

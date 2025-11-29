@@ -72,12 +72,7 @@ kick = "p2_kick"
 block = "p2_block"
 
 [node name="Hurt" parent="State Machine" index="7"]
-left = "p2_left"
-right = "p2_right"
-jump = "p2_jump"
-punch = "p2_punch"
-kick = "p2_kick"
-block = "p2_block"
+animation_name = ""
 
 [node name="Body" parent="State Machine/Hurt" index="0"]
 collision_layer = 4

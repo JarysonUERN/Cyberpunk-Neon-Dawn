@@ -1,6 +1,6 @@
 extends State
 
-@export var knockback_duration: float = 0.25 # Tempo curto e seco
+@export var knockback_duration: float = 0.3# Tempo curto e seco
 @export var friction: float = 1500.0 # Atrito muito alto para parar rápido
 
 var timer: float = 0.0
