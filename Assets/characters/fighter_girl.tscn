@@ -52,6 +52,9 @@ punch = "p2_punch"
 kick = "p2_kick"
 block = "p2_block"
 
+[node name="Punch" parent="State Machine/Punch" index="0"]
+collision_mask = 2
+
 [node name="Kick" parent="State Machine" index="5"]
 left = "p2_left"
 right = "p2_right"
@@ -75,6 +78,9 @@ jump = "p2_jump"
 punch = "p2_punch"
 kick = "p2_kick"
 block = "p2_block"
+
+[node name="Body" parent="State Machine/Hurt" index="0"]
+collision_layer = 4
 
 [node name="Block" parent="State Machine" index="8"]
 left = "p2_left"

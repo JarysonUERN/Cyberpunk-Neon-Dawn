@@ -41,7 +41,7 @@
 size = Vector2(21, 44)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pmmfa"]
-size = Vector2(22, 6)
+size = Vector2(28, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jmpgb"]
 size = Vector2(22, 10)
@@ -190,7 +190,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_85fvu")
 }],
-"loop": true,
+"loop": false,
 "name": &"Block",
 "speed": 5.0
 }, {
@@ -201,7 +201,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tbv2u")
 }],
-"loop": true,
+"loop": false,
 "name": &"Hurt",
 "speed": 5.0
 }, {
@@ -235,7 +235,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_27vi7")
 }],
-"loop": true,
+"loop": false,
 "name": &"Jump",
 "speed": 5.0
 }, {
@@ -249,7 +249,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_sq3ew")
 }],
-"loop": true,
+"loop": false,
 "name": &"Jump Kick",
 "speed": 5.0
 }, {
@@ -269,7 +269,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yds1n")
 }],
-"loop": true,
+"loop": false,
 "name": &"Kick",
 "speed": 5.0
 }, {
@@ -283,7 +283,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fi34c")
 }],
-"loop": true,
+"loop": false,
 "name": &"Punch",
 "speed": 5.0
 }, {
@@ -880,7 +880,9 @@ colors = PackedColorArray(0.541176, 0.0431373, 0.254902, 1, 0.807843, 0.12549, 0
 
 [node name="Brawler Girl" type="CharacterBody2D" node_paths=PackedStringArray("starting_state")]
 z_index = 1
-collision_mask = 2
+position = Vector2(437, 280)
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1")
 starting_state = NodePath("State Machine/Idle")
 
@@ -892,66 +894,75 @@ shape = SubResource("RectangleShape2D_8umla")
 script = ExtResource("2")
 starting_state = NodePath("Idle")
 
-[node name="Idle" type="Node2D" parent="State Machine" node_paths=PackedStringArray("walk_state", "jump_state", "fall_state", "punch_state", "kick_state", "block_state")]
+[node name="Idle" type="Node2D" parent="State Machine" node_paths=PackedStringArray("idle_state", "walk_state", "jump_state", "fall_state", "punch_state", "kick_state", "block_state", "jump_kick_state")]
 script = ExtResource("3")
 animation_name = "Idle"
+idle_state = NodePath(".")
 walk_state = NodePath("../Walk")
 jump_state = NodePath("../Jump")
 fall_state = NodePath("../Fall")
 punch_state = NodePath("../Punch")
 kick_state = NodePath("../Kick")
 block_state = NodePath("../Block")
+jump_kick_state = NodePath(".")
 
-[node name="Walk" type="Node2D" parent="State Machine" node_paths=PackedStringArray("idle_state", "jump_state", "fall_state", "punch_state", "kick_state", "block_state")]
+[node name="Walk" type="Node2D" parent="State Machine" node_paths=PackedStringArray("idle_state", "walk_state", "jump_state", "fall_state", "punch_state", "kick_state", "block_state")]
 script = ExtResource("4")
 animation_name = "Walk"
 idle_state = NodePath("../Idle")
+walk_state = NodePath(".")
 jump_state = NodePath("../Jump")
 fall_state = NodePath("../Fall")
 punch_state = NodePath("../Punch")
 kick_state = NodePath("../Kick")
 block_state = NodePath("../Block")
 
-[node name="Jump" type="Node2D" parent="State Machine" node_paths=PackedStringArray("idle_state", "walk_state", "fall_state", "jump_kick_state")]
+[node name="Jump" type="Node2D" parent="State Machine" node_paths=PackedStringArray("idle_state", "walk_state", "jump_state", "fall_state", "jump_kick_state")]
 script = ExtResource("5")
 animation_name = "Jump"
 idle_state = NodePath("../Idle")
 walk_state = NodePath("../Walk")
+jump_state = NodePath("../Fall")
 fall_state = NodePath("../Fall")
 jump_kick_state = NodePath("../Jump Kick")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="State Machine/Jump"]
 stream = ExtResource("6")
 
-[node name="Fall" type="Node2D" parent="State Machine" node_paths=PackedStringArray("idle_state", "walk_state", "jump_kick_state")]
+[node name="Fall" type="Node2D" parent="State Machine" node_paths=PackedStringArray("idle_state", "walk_state", "fall_state", "jump_kick_state")]
 script = ExtResource("7")
 animation_name = "Fall"
 idle_state = NodePath("../Idle")
 walk_state = NodePath("../Walk")
+fall_state = NodePath(".")
 jump_kick_state = NodePath("../Jump Kick")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="State Machine/Fall"]
 stream = ExtResource("8")
 
-[node name="Punch" type="Node2D" parent="State Machine" node_paths=PackedStringArray("idle_state", "block_state", "jump_kick_state")]
+[node name="Punch" type="Node2D" parent="State Machine" node_paths=PackedStringArray("return_state", "hitbox", "idle_state", "walk_state", "punch_state")]
 position = Vector2(0, -1)
 script = ExtResource("9")
+return_state = NodePath("../Idle")
+hitbox = NodePath("Punch")
 animation_name = "Punch"
 idle_state = NodePath("../Idle")
-block_state = NodePath("../Block")
-jump_kick_state = NodePath("../Jump Kick")
+walk_state = NodePath("../Walk")
+punch_state = NodePath(".")
 
 [node name="Punch" type="Area2D" parent="State Machine/Punch"]
+collision_layer = 0
+collision_mask = 4
 script = ExtResource("10")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="State Machine/Punch/Punch"]
+stream = ExtResource("11")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="State Machine/Punch/Punch"]
-position = Vector2(26, 0)
+position = Vector2(23, 0)
 shape = SubResource("RectangleShape2D_pmmfa")
 disabled = true
 debug_color = Color(0.953328, 0.0774086, 0.507093, 0.42)
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="State Machine/Punch"]
-stream = ExtResource("11")
 
 [node name="Kick" type="Node2D" parent="State Machine" node_paths=PackedStringArray("idle_state", "block_state")]
 position = Vector2(0, 4)
@@ -972,12 +983,15 @@ debug_color = Color(0.926347, 0.183372, 0.504128, 0.42)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="State Machine/Kick"]
 stream = ExtResource("14")
 
-[node name="Jump Kick" type="Node2D" parent="State Machine" node_paths=PackedStringArray("idle_state", "fall_state")]
+[node name="Jump Kick" type="Node2D" parent="State Machine" node_paths=PackedStringArray("idle_state", "walk_state", "jump_state", "fall_state", "jump_kick_state")]
 position = Vector2(0, -1.5)
 script = ExtResource("15")
 animation_name = "Jump Kick"
 idle_state = NodePath("../Idle")
+walk_state = NodePath("../Walk")
+jump_state = NodePath("../Jump")
 fall_state = NodePath("../Fall")
+jump_kick_state = NodePath(".")
 
 [node name="Jump Kick" type="Area2D" parent="State Machine/Jump Kick"]
 script = ExtResource("16")
@@ -991,11 +1005,16 @@ debug_color = Color(0.97775, 0, 0.401658, 0.42)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="State Machine/Jump Kick"]
 stream = ExtResource("17")
 
-[node name="Hurt" type="Node2D" parent="State Machine" node_paths=PackedStringArray("idle_state", "block_state")]
+[node name="Hurt" type="Node2D" parent="State Machine" node_paths=PackedStringArray("idle_state", "jump_state", "fall_state", "punch_state", "kick_state", "block_state", "jump_kick_state")]
 script = ExtResource("18")
 animation_name = "Hurt"
 idle_state = NodePath("../Idle")
+jump_state = NodePath("../Jump")
+fall_state = NodePath("../Fall")
+punch_state = NodePath("../Punch")
+kick_state = NodePath("../Kick")
 block_state = NodePath("../Block")
+jump_kick_state = NodePath("../Jump Kick")
 
 [node name="Body" type="Area2D" parent="State Machine/Hurt"]
 script = ExtResource("19")
