@@ -45,10 +45,10 @@ size = Vector2(21, 44)
 size = Vector2(28, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jmpgb"]
-size = Vector2(22, 10)
+size = Vector2(23, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6u6r3"]
-size = Vector2(14, 37)
+size = Vector2(14, 45)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h5bua"]
 size = Vector2(13, 35)
@@ -1003,7 +1003,7 @@ collision_mask = 4
 script = ExtResource("16")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="State Machine/Jump Kick/Jump Kick"]
-position = Vector2(16, 0)
+position = Vector2(16, 4)
 shape = SubResource("RectangleShape2D_6u6r3")
 disabled = true
 debug_color = Color(0.97775, 0, 0.401658, 0.42)
@@ -1048,11 +1048,14 @@ block_state = NodePath(".")
 jump_kick_state = NodePath("../Jump Kick")
 
 [node name="BlockBox" type="Area2D" parent="State Machine/Block"]
+collision_layer = 2
+collision_mask = 0
 script = ExtResource("22_5hfyx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="State Machine/Block/BlockBox"]
 position = Vector2(15, 8)
 shape = SubResource("RectangleShape2D_bthdk")
+disabled = true
 debug_color = Color(0.77355367, 0.481804, 0.97309035, 0.41960785)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="State Machine/Block/BlockBox"]

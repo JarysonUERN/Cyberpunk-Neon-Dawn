@@ -13,6 +13,8 @@ var game_is_running: bool = true
 var enable_restart: bool = false
 
 func _ready():
+	if player2 and "target" in player2:
+		player2.target = player1
 	# Configuração inicial do jogo
 	new_game()
 
