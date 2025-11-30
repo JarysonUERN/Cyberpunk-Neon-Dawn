@@ -27,7 +27,7 @@ var player: CharacterBody2D
 @export var jump: String = "p1_jump"
 @export var punch: String = "p1_punch"
 @export var kick: String = "p1_kick"
-@export var block: String = "p1_block"
+@export var block: String = "Block"
 
 func enter() -> void:
 	# Prioridade 1: Tenta achar o nó com o nome "Sprite" (O seu caso)
@@ -59,6 +59,9 @@ func process_input(event: InputEvent) -> State:
 			return kick_state
 		if event.is_action_pressed(block):
 			return block_state
+	else:
+		if event.is_action_pressed(punch):
+			return jump_kick_state
 	return null
 
 func process_frame(delta: float) -> State:

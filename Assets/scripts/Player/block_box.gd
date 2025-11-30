@@ -1,5 +1,5 @@
-class_name PunchBox
+class_name BlockBOX
 extends Area2D
 
 # Esta variável é essencial para que o HurtBox saiba quanto vida tirar
-var damage: int = 10
+var damagereduction: int = 10
