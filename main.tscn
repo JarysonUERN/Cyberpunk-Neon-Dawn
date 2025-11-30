@@ -1988,5 +1988,5 @@ position = Vector2(1612, 198.57031)
 shape = SubResource("RectangleShape2D_kek77")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(81, 224)
+position = Vector2(159, 253)
 shape = SubResource("RectangleShape2D_kek77")
