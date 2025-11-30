@@ -987,9 +987,10 @@ debug_color = Color(0.926347, 0.183372, 0.504128, 0.42)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="State Machine/Kick"]
 stream = ExtResource("14")
 
-[node name="Jump Kick" type="Node2D" parent="State Machine" node_paths=PackedStringArray("idle_state", "walk_state", "jump_state", "fall_state", "jump_kick_state")]
+[node name="Jump Kick" type="Node2D" parent="State Machine" node_paths=PackedStringArray("hitbox", "idle_state", "walk_state", "jump_state", "fall_state", "jump_kick_state")]
 position = Vector2(0, -1.5)
 script = ExtResource("15")
+hitbox = NodePath("Jump Kick")
 animation_name = "Jump Kick"
 idle_state = NodePath("../Idle")
 walk_state = NodePath("../Walk")
@@ -998,6 +999,7 @@ fall_state = NodePath("../Fall")
 jump_kick_state = NodePath(".")
 
 [node name="Jump Kick" type="Area2D" parent="State Machine/Jump Kick"]
+collision_mask = 4
 script = ExtResource("16")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="State Machine/Jump Kick/Jump Kick"]
@@ -1051,6 +1053,7 @@ script = ExtResource("22_5hfyx")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="State Machine/Block/BlockBox"]
 position = Vector2(15, 8)
 shape = SubResource("RectangleShape2D_bthdk")
+debug_color = Color(0.77355367, 0.481804, 0.97309035, 0.41960785)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="State Machine/Block/BlockBox"]
 stream = ExtResource("22")

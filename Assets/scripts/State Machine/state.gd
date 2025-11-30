@@ -59,6 +59,9 @@ func process_input(event: InputEvent) -> State:
 			return kick_state
 		if event.is_action_pressed(block):
 			return block_state
+	else:
+		if event.is_action_pressed(punch):
+			return jump_kick_state
 	return null
 
 func process_frame(delta: float) -> State:
