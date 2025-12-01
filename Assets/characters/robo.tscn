@@ -1,83 +1,83 @@
-[gd_scene load_steps=33 format=3 uid="uid://cntwf33ussx36"]
+[gd_scene load_steps=33 format=3 uid="uid://b7qar2hufxmj6"]
 
-[ext_resource type="PackedScene" uid="uid://djqjols3si08e" path="res://Assets/characters/brawler_girl.tscn" id="1"]
-[ext_resource type="Shader" uid="uid://cjqcf4mpns0pv" path="res://Assets/sprites/Brawler Girl/brawler_girl.gdshader" id="2"]
-[ext_resource type="Script" uid="uid://b1g7pyyu4rb67" path="res://Assets/scripts/enemyai/enemy_ai.gd" id="2_5n4mo"]
-[ext_resource type="Script" uid="uid://cc4o41il8wpen" path="res://Assets/scripts/enemyai/Enemy_chase.gd" id="3_5n4mo"]
-[ext_resource type="Script" uid="uid://bxk1sg7deuria" path="res://Assets/scripts/enemyai/enemy_ai_machine.gd" id="3_ttk51"]
-[ext_resource type="Script" uid="uid://cwbggv202yvvt" path="res://Assets/scripts/enemyai/enemy_idle.gd" id="4_b73jy"]
-[ext_resource type="Script" uid="uid://ngmerw378sdt" path="res://Assets/characters/Enemy_block.gd" id="5_53inh"]
-[ext_resource type="Script" uid="uid://gbynakklms0u" path="res://Assets/characters/enemy_punch.gd" id="5_ttk51"]
-[ext_resource type="Script" uid="uid://dheanuuiaatxy" path="res://Assets/scripts/enemyai/block_box.gd" id="5_u2f50"]
-[ext_resource type="Script" uid="uid://c37fbdnkppdp3" path="res://Assets/scripts/enemyai/enemy_hurt.gd" id="7_al800"]
-[ext_resource type="Script" uid="uid://br41w1x5b15he" path="res://Assets/scripts/enemyai/enemy_jumpkick.gd" id="9_4bvwp"]
-[ext_resource type="Texture2D" uid="uid://cd0whi04m4uf3" path="res://Assets/sprites/Enemy Punk/hurt.png" id="14_bm1uj"]
-[ext_resource type="Texture2D" uid="uid://b32dg650semne" path="res://Assets/sprites/Enemy Punk/idle.png" id="15_ic80g"]
-[ext_resource type="Texture2D" uid="uid://b1g53u86w2yw" path="res://Assets/sprites/Enemy Punk/punch.png" id="16_y633j"]
-[ext_resource type="Texture2D" uid="uid://be7nmd8sce2q0" path="res://Assets/sprites/Enemy Punk/walk.png" id="17_naivh"]
+[ext_resource type="PackedScene" uid="uid://djqjols3si08e" path="res://Assets/characters/brawler_girl.tscn" id="1_b8w3p"]
+[ext_resource type="Script" uid="uid://b1g7pyyu4rb67" path="res://Assets/scripts/enemyai/enemy_ai.gd" id="2_y8qvh"]
+[ext_resource type="Script" uid="uid://bxk1sg7deuria" path="res://Assets/scripts/enemyai/enemy_ai_machine.gd" id="3_pdivl"]
+[ext_resource type="Script" uid="uid://cwbggv202yvvt" path="res://Assets/scripts/enemyai/enemy_idle.gd" id="4_760ev"]
+[ext_resource type="Script" uid="uid://cc4o41il8wpen" path="res://Assets/scripts/enemyai/Enemy_chase.gd" id="5_sgkvf"]
+[ext_resource type="Script" uid="uid://gbynakklms0u" path="res://Assets/characters/enemy_punch.gd" id="6_wordd"]
+[ext_resource type="Script" uid="uid://br41w1x5b15he" path="res://Assets/scripts/enemyai/enemy_jumpkick.gd" id="7_sler4"]
+[ext_resource type="Script" uid="uid://c37fbdnkppdp3" path="res://Assets/scripts/enemyai/enemy_hurt.gd" id="8_awvdo"]
+[ext_resource type="Script" uid="uid://ngmerw378sdt" path="res://Assets/characters/Enemy_block.gd" id="9_dtjgb"]
+[ext_resource type="Script" uid="uid://dheanuuiaatxy" path="res://Assets/scripts/enemyai/block_box.gd" id="10_jgfl5"]
+[ext_resource type="Shader" uid="uid://cjqcf4mpns0pv" path="res://Assets/sprites/Brawler Girl/brawler_girl.gdshader" id="11_7ygfj"]
+[ext_resource type="Texture2D" uid="uid://cd0whi04m4uf3" path="res://Assets/sprites/Enemy Punk/hurt.png" id="12_kx4ug"]
+[ext_resource type="Texture2D" uid="uid://b32dg650semne" path="res://Assets/sprites/Enemy Punk/idle.png" id="13_8ipkb"]
+[ext_resource type="Texture2D" uid="uid://b1g53u86w2yw" path="res://Assets/sprites/Enemy Punk/punch.png" id="14_sxugf"]
+[ext_resource type="Texture2D" uid="uid://be7nmd8sce2q0" path="res://Assets/sprites/Enemy Punk/walk.png" id="15_67bgh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_esh3e"]
-shader = ExtResource("2")
+shader = ExtResource("11_7ygfj")
 shader_parameter/new_color = Color(0.06, 1, 0.655333, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bm1uj"]
-atlas = ExtResource("14_bm1uj")
+atlas = ExtResource("12_kx4ug")
 region = Rect2(0, 0, 96, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ic80g"]
-atlas = ExtResource("14_bm1uj")
+atlas = ExtResource("12_kx4ug")
 region = Rect2(96, 0, 96, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y633j"]
-atlas = ExtResource("14_bm1uj")
+atlas = ExtResource("12_kx4ug")
 region = Rect2(192, 0, 96, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_naivh"]
-atlas = ExtResource("14_bm1uj")
+atlas = ExtResource("12_kx4ug")
 region = Rect2(288, 0, 96, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r42jp"]
-atlas = ExtResource("15_ic80g")
+atlas = ExtResource("13_8ipkb")
 region = Rect2(0, 0, 96, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l3aww"]
-atlas = ExtResource("15_ic80g")
+atlas = ExtResource("13_8ipkb")
 region = Rect2(96, 0, 96, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b0vyr"]
-atlas = ExtResource("15_ic80g")
+atlas = ExtResource("13_8ipkb")
 region = Rect2(192, 0, 96, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_di685"]
-atlas = ExtResource("15_ic80g")
+atlas = ExtResource("13_8ipkb")
 region = Rect2(288, 0, 96, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aktm2"]
-atlas = ExtResource("16_y633j")
+atlas = ExtResource("14_sxugf")
 region = Rect2(0, 0, 96, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ujtkm"]
-atlas = ExtResource("16_y633j")
+atlas = ExtResource("14_sxugf")
 region = Rect2(96, 0, 96, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u3gmv"]
-atlas = ExtResource("16_y633j")
+atlas = ExtResource("14_sxugf")
 region = Rect2(192, 0, 96, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vloxs"]
-atlas = ExtResource("17_naivh")
+atlas = ExtResource("15_67bgh")
 region = Rect2(0, 0, 96, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_re42y"]
-atlas = ExtResource("17_naivh")
+atlas = ExtResource("15_67bgh")
 region = Rect2(96, 0, 96, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t83te"]
-atlas = ExtResource("17_naivh")
+atlas = ExtResource("15_67bgh")
 region = Rect2(192, 0, 96, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rse8y"]
-atlas = ExtResource("17_naivh")
+atlas = ExtResource("15_67bgh")
 region = Rect2(288, 0, 96, 63)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v4jpw"]
@@ -148,24 +148,24 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Fighter Girl" instance=ExtResource("1")]
+[node name="Fighter Girl" instance=ExtResource("1_b8w3p")]
 position = Vector2(875, 403)
 collision_layer = 4
 collision_mask = 3
-script = ExtResource("2_5n4mo")
+script = ExtResource("2_y8qvh")
 
 [node name="Collision" parent="." index="0"]
 position = Vector2(45, 5)
 
 [node name="State Machine" parent="." index="1"]
-script = ExtResource("3_ttk51")
+script = ExtResource("3_pdivl")
 
 [node name="Idle" parent="State Machine" index="0"]
-script = ExtResource("4_b73jy")
+script = ExtResource("4_760ev")
 detect_range = 300.0
 
 [node name="Walk" parent="State Machine" index="1"]
-script = ExtResource("3_5n4mo")
+script = ExtResource("5_sgkvf")
 chase_speed = 80.0
 aggression = 0.5
 jump_chance = 0.002
@@ -179,18 +179,18 @@ script = null
 script = null
 
 [node name="Punch" parent="State Machine" index="4" node_paths=PackedStringArray("return_state")]
-script = ExtResource("5_ttk51")
+script = ExtResource("6_wordd")
 return_state = NodePath(".")
 
 [node name="Punch" parent="State Machine/Punch" index="0"]
 collision_mask = 2
 
 [node name="Jump Kick" parent="State Machine" index="6"]
-script = ExtResource("9_4bvwp")
+script = ExtResource("7_sler4")
 air_speed = 150.0
 
 [node name="Hurt" parent="State Machine" index="7"]
-script = ExtResource("7_al800")
+script = ExtResource("8_awvdo")
 
 [node name="Body" parent="State Machine/Hurt" index="0"]
 collision_layer = 4
@@ -200,11 +200,11 @@ collision_mask = 2
 position = Vector2(44, 7)
 
 [node name="Block" parent="State Machine" index="8"]
-script = ExtResource("5_53inh")
+script = ExtResource("9_dtjgb")
 
 [node name="BlockBox" parent="State Machine/Block" index="0"]
 collision_layer = 4
-script = ExtResource("5_u2f50")
+script = ExtResource("10_jgfl5")
 
 [node name="CollisionShape2D" parent="State Machine/Block/BlockBox" index="0"]
 position = Vector2(21, 4)
