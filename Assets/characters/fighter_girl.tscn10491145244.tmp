@@ -38,9 +38,8 @@ detect_range = 300.0
 script = ExtResource("3_5n4mo")
 chase_speed = 80.0
 aggression = 0.5
-jump_chance = 0.002
+jump_chance = 0.02
 sprite_faces_left = false
-jump_cooldown_time = 3.0
 
 [node name="Jump" parent="State Machine" index="2" node_paths=PackedStringArray("punch_state", "block_state")]
 script = ExtResource("6_4bvwp")
