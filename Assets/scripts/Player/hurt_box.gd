@@ -1,19 +1,17 @@
 extends Area2D
 
-@onready var state_machine: Node = $"../.." 
+# Referências
+@onready var state_machine: Node = $"../.."
 @onready var hurt_state: Node = $".."
-@onready var block_state: Node = $"../../Block" 
+@onready var block_state: Node = $"../../Block"
 @onready var particles: CPUParticles2D = $"../../../Hurt Particles"
-@onready var player: CharacterBody2D = $"../../.." 
+@onready var player: CharacterBody2D = $"../../.."
 @onready var camera: Camera2D = $"../../../../Camera"
 @onready var health_node: Node = $"../../../Health"
-
-# --- NOVO: Referência à sua caixa de colisão de defesa ---
-# Ajuste o caminho se o nó BlockBox não for irmão imediato do HurtBox
-@onready var block_area: Area2D = $"../BlockBox" 
+@onready var block_area: Area2D = $"../../Block/BlockBox"
 
 # Configuração: Jogador toma 40% do dano (redução de 60%)
-var block_damage_factor: float = 0.4 
+var block_damage_factor: float = 0.4
 
 func on_area_entered(hitbox) -> void:
 	if hitbox == null:
@@ -29,39 +27,55 @@ func on_area_entered(hitbox) -> void:
 	
 	# --- LÓGICA DE DEFESA ---
 	
-	# 1. Verifica Estado (Se está segurando o botão)
-	var is_in_block_state = (player.current_state == block_state)
+	# 1. Verifica se a State Machine diz que o estado atual é o Block
+	var current_state_node = state_machine.current_state if "current_state" in state_machine else null
+	var is_in_block_state = (current_state_node == block_state)
 	
-	# 2. Verifica Geometria (Se o ataque bateu na BlockBox)
-	var hit_shield = false
-	if block_area and hitbox is Area2D:
-		# Verifica fisicamente se a hitbox do ataque encostou na BlockBox
-		hit_shield = block_area.overlaps_area(hitbox)
-	
-	# Condição Final: Precisa estar no estado E ter batido no escudo
-	if is_in_block_state and hit_shield:
+	# 2. Verifica a Direção (Nova Lógica mais estável)
+	var blocked_direction = false
+	if is_in_block_state:
+		# Pega a direção do ataque em relação ao player
+		# Se (ataque.x - player.x) for positivo, o ataque vem da direita.
+		var attack_vector_x = (hitbox.global_position.x - global_position.x)
+		
+		# Verifica para onde o player está olhando
+		# flip_h = false geralmente significa olhando para a direita
+		var is_facing_right = not player.get_node("Sprite").flip_h
+		
+		if is_facing_right:
+			# Se olho para direita, defendo ataques que vêm da direita (x > 0)
+			if attack_vector_x > 0:
+				blocked_direction = true
+		else:
+			# Se olho para esquerda, defendo ataques que vêm da esquerda (x < 0)
+			if attack_vector_x < 0:
+				blocked_direction = true
+
+	# Condição Final: Precisa estar no estado E estar defendendo o lado certo
+	if is_in_block_state and blocked_direction:
 		# --- CENÁRIO: BLOQUEIO BEM SUCEDIDO ---
-		# Não aplica knockback (player.velocity), então ele não desliza.
+		print("Defendeu! Dano reduzido.")
 		
 		var reduced_damage = int(damage_amount * block_damage_factor)
 		
 		if health_node:
 			health_node.deal_damage(reduced_damage)
 			
-		var audio = $"../../Block/AudioStreamPlayer"
+		var audio = $"../../Block/BlockBox/AudioStreamPlayer"
 		if audio: 
 			audio.play()
 			
 	else:
-		# --- CENÁRIO: LEVOU DANO (Não defendeu ou defendeu de costas) ---
+		# --- CENÁRIO: LEVOU DANO (Hurt) ---
+		print("Levou Dano Cheio!")
 		
-		# 1. Partículas (Só aparecem se levar dano cheio)
+		# 1. Partículas
 		if particles:
 			var direction = (hitbox.global_position - global_position).normalized()
-			particles.gravity = particles.gravity.length() * direction
+			particles.gravity = Vector2(abs(particles.gravity.x), particles.gravity.y) * -direction.x
 			particles.emitting = true
 		
-		# 2. Empurrão (Knockback) - Só acontece aqui
+		# 2. Empurrão (Knockback)
 		var diff_vector = global_position - hitbox.global_position
 		diff_vector.y = 0 
 		var push_dir = diff_vector.normalized()
@@ -75,8 +89,6 @@ func on_area_entered(hitbox) -> void:
 		if health_node:
 			health_node.deal_damage(damage_amount)
 		
-		# 5. Entra no estado de Hurt
-		player.change_state(hurt_state)
-
-func engine_slow():
-	pass
+		# 5. Muda para o estado Hurt
+		if player.has_method("change_state"):
+			player.change_state(hurt_state)

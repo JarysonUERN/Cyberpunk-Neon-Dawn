@@ -20,7 +20,7 @@ var player: CharacterBody2D
 @export var kick_state: State
 @export var block_state: State
 @export var jump_kick_state: State
-
+@export var dash_state: State
 # --- MAPEAMENTO DE TECLAS ---
 @export var left: String = "p1_left"
 @export var right: String = "p1_right"
@@ -28,7 +28,7 @@ var player: CharacterBody2D
 @export var punch: String = "p1_punch"
 @export var kick: String = "p1_kick"
 @export var block: String = "Block"
-
+@export var dash: String = "p1_dash"
 func enter() -> void:
 	# Prioridade 1: Tenta achar o nó com o nome "Sprite" (O seu caso)
 	if player.has_node("Sprite"):
