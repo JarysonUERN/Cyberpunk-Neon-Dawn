@@ -1,40 +1,68 @@
 class_name EnemyAI
 extends CharacterBody2D
 
-@onready var state_machine = $"State Machine"
-@onready var animated_sprite = $AnimatedSprite2D
+# Referência à máquina de estados da IA
+@onready var state_machine: EnemyStateMachine = $"State Machine"
+@onready var animated_sprite = $Player # Ou $Sprite, dependendo da sua cena
 
-@export var starting_state: State
 @export var target: CharacterBody2D 
 
-var current_state: State
+var current_state: EnemyState:
+	get:
+		if state_machine:
+			return state_machine.current_state
+		return null
 
 func _ready():
-	if has_node("Sprite"):
-		var sprite_node = get_node("Sprite")
+	# --- CORREÇÃO VIA CÓDIGO (HARDCODED) ---
+	# Isso garante que as conexões existam mesmo se o Inspector estiver vazio
+	if state_machine:
+		# 1. Pega os nós filhos da State Machine pelos nomes exatos da cena
+		var idle_node = state_machine.get_node_or_null("Idle")
+		var walk_node = state_machine.get_node_or_null("Walk")
+		var punch_node = state_machine.get_node_or_null("Punch")
+		var block_node = state_machine.get_node_or_null("Block")
+		var kick_node = state_machine.get_node_or_null("Kick") # Se tiver
+		var jump_node = state_machine.get_node_or_null("Jump")
+		var fall_node = state_machine.get_node_or_null("Fall")
 		
-		if sprite_node.position != Vector2.ZERO:
-			sprite_node.offset += sprite_node.position 
-			sprite_node.position = Vector2.ZERO
-	# -----------------------------------------------
+		# 2. Define o Estado Inicial (Resolve o congelamento inicial)
+		if idle_node:
+			state_machine.starting_state = idle_node
+		else:
+			push_error("ERRO CRITICO: Nó 'Idle' não encontrado dentro da State Machine!")
 
-	for child in state_machine.get_children():
-		if child is State:
-			child.player = self
+		# 3. Conecta as transições do IDLE (Resolve ela não perseguir)
+		if idle_node:
+			idle_node.walk_state = walk_node
+			# Se quiser que ela pule/caia do idle:
+			idle_node.fall_state = fall_node 
 
-	if starting_state:
-		change_state(starting_state)
-	else:
-		push_error("ERRO: Starting State não definido na IA!")
+		# 4. Conecta as transições do WALK (Resolve ela travar na frente do player)
+		if walk_node:
+			walk_node.idle_state = idle_node   # Se o player sumir
+			walk_node.punch_state = punch_node # Se chegar perto -> SOCO
+			walk_node.block_state = block_node # Se o player atacar -> DEFESA
+			# walk_node.kick_state = kick_node # Se tiver chute
+			
+		# 5. Conecta o retorno do PUNCH (Evita loop ou travamento após soco)
+		if punch_node:
+			punch_node.return_state = idle_node # Volta para Idle após bater
+
+		# 6. Conecta o retorno do BLOCK
+		if block_node:
+			block_node.idle_state = idle_node
+
+	# --- FIM DA CORREÇÃO ---
+
+	# Inicializa a máquina normalmente
+	if state_machine:
+		state_machine.init(self)
 
 func _physics_process(delta):
-	if current_state:
-		var s = current_state.process_physics(delta)
-		if s:
-			change_state(s)
+	if state_machine:
+		state_machine.process_physics(delta)
 
-func change_state(new_state: State):
-	if current_state:
-		current_state.exit()
-	current_state = new_state
-	current_state.enter()
+func change_state(new_state: EnemyState) -> void:
+	if state_machine:
+		state_machine.change_state(new_state)

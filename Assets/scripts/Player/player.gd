@@ -4,7 +4,7 @@ extends CharacterBody2D
 
 # Referência para o nó que segura os estados
 @onready var state_machine = $"State Machine"
-@onready var animated_sprite = $AnimatedSprite2D
+@onready var animated_sprite = $Sprite
 
 # Estado inicial (Arraste o nó Idle para cá no Inspector)
 @export var starting_state: State

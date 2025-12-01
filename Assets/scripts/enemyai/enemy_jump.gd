@@ -1,4 +1,4 @@
-extends State
+extends EnemyState
 
 # IA tenta se mover no ar em direção ao alvo
 var air_speed: float = 150.0
@@ -12,7 +12,7 @@ func enter() -> void:
 	if player.has_node("Sprite"):
 		player.get_node("Sprite").play("Jump")
 
-func process_physics(delta: float) -> State:
+func process_physics(delta: float) -> EnemyState:
 	player.velocity.y += gravity * delta
 	
 	var target = player.target

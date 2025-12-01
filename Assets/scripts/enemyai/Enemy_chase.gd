@@ -1,4 +1,4 @@
-extends State
+extends EnemyState
 
 # --- VARIÁVEIS DE CONFIGURAÇÃO ---
 @export var chase_speed: float = 80.0
@@ -10,12 +10,18 @@ extends State
 
 func enter() -> void:
 	super()
-	var visual_node = _get_visual_node()
-	if visual_node and (visual_node is AnimatedSprite2D):
-		if visual_node.animation != "Walk":
-			visual_node.play("Walk")
+	var target = player.target
+	if target:
+		var dir_x = sign(target.global_position.x - player.global_position.x)
+		if dir_x != 0:
+			var visual_node = _get_visual_node()
+			if visual_node:
+				if visual_node.scale.x > 0 and dir_x < 0:
+					visual_node.scale.x *= -1
+				elif visual_node.scale.x < 0 and dir_x > 0:
+					visual_node.scale.x *= -1
 
-func process_physics(delta: float) -> State:
+func process_physics(delta: float) -> EnemyState:
 	player.velocity.y += gravity * delta
 	
 	var target = player.target

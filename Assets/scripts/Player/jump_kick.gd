@@ -46,7 +46,7 @@ func _on_area_entered(area):
 		area.on_area_entered(hitbox)
 		
 
-func _on_animation_finished(anim_name = ""):
+func _on_animation_finished(anim_name = "Idle"):
 	if player.current_state == self:
 		if not player.is_on_floor():
 			player.change_state(fall_state)

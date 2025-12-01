@@ -22,7 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://b23flw0nlqice" path="res://Assets/audio/Hurt.wav" id="20"]
 [ext_resource type="Script" uid="uid://juxnto4i4x48" path="res://Assets/scripts/Player/block.gd" id="21"]
 [ext_resource type="AudioStream" uid="uid://bd38cfax1uvkw" path="res://Assets/audio/Block.wav" id="22"]
-[ext_resource type="Script" path="res://Assets/scripts/Player/block_box.gd" id="22_5hfyx"]
+[ext_resource type="Script" uid="uid://bt057dr0st5cs" path="res://Assets/scripts/Player/block_box.gd" id="22_5hfyx"]
 [ext_resource type="Texture2D" uid="uid://b62gd3reb3ooh" path="res://Assets/sprites/Brawler Girl/shadow.png" id="23"]
 [ext_resource type="Script" uid="uid://jslyr71t3rjm" path="res://Assets/scripts/Player/shadow.gd" id="24"]
 [ext_resource type="Shader" uid="uid://cjqcf4mpns0pv" path="res://Assets/sprites/Brawler Girl/brawler_girl.gdshader" id="25"]
