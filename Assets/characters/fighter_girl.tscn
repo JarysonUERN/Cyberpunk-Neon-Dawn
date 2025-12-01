@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cntwf33ussx36"]
+[gd_scene load_steps=8 format=3 uid="uid://cntwf33ussx36"]
 
 [ext_resource type="PackedScene" uid="uid://djqjols3si08e" path="res://Assets/characters/brawler_girl.tscn" id="1"]
 [ext_resource type="Shader" uid="uid://cjqcf4mpns0pv" path="res://Assets/sprites/Brawler Girl/brawler_girl.gdshader" id="2"]
 [ext_resource type="Script" uid="uid://b1g7pyyu4rb67" path="res://Assets/scripts/enemyai/enemy_ai.gd" id="2_5n4mo"]
 [ext_resource type="Script" uid="uid://cc4o41il8wpen" path="res://Assets/scripts/enemyai/Enemy_chase.gd" id="3_5n4mo"]
+[ext_resource type="Script" uid="uid://k13bkdivk33i" path="res://Assets/characters/Enemy_block.gd" id="5_53inh"]
+[ext_resource type="Script" uid="uid://dheanuuiaatxy" path="res://Assets/scripts/enemyai/block_box.gd" id="5_u2f50"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_esh3e"]
 shader = ExtResource("2")
@@ -17,11 +19,14 @@ script = ExtResource("2_5n4mo")
 starting_state = NodePath("State Machine/Walk")
 
 [node name="Collision" parent="." index="0"]
-visible = false
+position = Vector2(0, 9)
 
 [node name="Walk" parent="State Machine" index="1" node_paths=PackedStringArray("jump_kick_state")]
 script = ExtResource("3_5n4mo")
 chase_speed = 80.0
+aggression = 0.5
+jump_chance = 0.02
+sprite_faces_left = false
 animation_name = ""
 jump_kick_state = NodePath("../Jump Kick")
 
@@ -73,8 +78,13 @@ animation_name = ""
 
 [node name="Body" parent="State Machine/Hurt" index="0"]
 collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="State Machine/Hurt/Body" index="0"]
+position = Vector2(0, 7.5)
 
 [node name="Block" parent="State Machine" index="8"]
+script = ExtResource("5_53inh")
 left = "p2_left"
 right = "p2_right"
 jump = "p2_jump"
@@ -82,14 +92,15 @@ punch = "p2_punch"
 kick = "p2_kick"
 block = "p2_block"
 
+[node name="BlockBox" parent="State Machine/Block" index="0"]
+collision_layer = 4
+script = ExtResource("5_u2f50")
+
 [node name="CollisionShape2D" parent="State Machine/Block/BlockBox" index="0"]
-position = Vector2(-17, 5)
-disabled = true
+position = Vector2(21, 4)
 
 [node name="Sprite" parent="." index="3"]
 material = SubResource("ShaderMaterial_esh3e")
-position = Vector2(-5, 0)
-flip_h = true
 
 [node name="HealthBar" parent="CanvasLayer" index="0"]
 anchors_preset = 1

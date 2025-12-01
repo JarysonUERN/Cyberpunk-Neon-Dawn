@@ -1024,7 +1024,7 @@ jump_kick_state = NodePath("../Jump Kick")
 
 [node name="Body" type="Area2D" parent="State Machine/Hurt"]
 collision_layer = 2
-collision_mask = 0
+collision_mask = 4
 script = ExtResource("19")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="State Machine/Hurt/Body"]
@@ -1049,7 +1049,7 @@ jump_kick_state = NodePath("../Jump Kick")
 
 [node name="BlockBox" type="Area2D" parent="State Machine/Block"]
 collision_layer = 2
-collision_mask = 0
+collision_mask = 4
 script = ExtResource("22_5hfyx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="State Machine/Block/BlockBox"]
