@@ -17,10 +17,10 @@ Este projeto foi desenvolvido como requisito avaliativo para a disciplina de Com
 
 ## Mecânicas Principais
 
-* ** Combate Visceral (Hack and Slash):** Sistema de combos fluido com Ataques Leves (rápidos), Pesados (quebra de guarda) e Chutes táticos (controle de grupo).
-* ** Sinergias de Implantes (RPG):** Sistema de "circuitos" onde conectar implantes compatíveis desbloqueia habilidades passivas únicas (ex: *Rastro Voltaico*).
-* ** Sistema de Sobrecarga (Overdrive):** Mecânica de risco-recompensa onde acumular energia acima de 100% aumenta o dano, mas esgotá-la causa superaquecimento e vulnerabilidade.
-* ** Postura e Quebra de Guarda:** Inimigos de elite possuem barras de postura que, ao serem quebradas via *Parries*, permitem execuções cinematográficas.
+* **Combate Visceral (Hack and Slash):** Sistema de combos fluido com Ataques Leves (rápidos), Pesados (quebra de guarda) e Chutes táticos (controle de grupo).
+* **Sinergias de Implantes (RPG):** Sistema de "circuitos" onde conectar implantes compatíveis desbloqueia habilidades passivas únicas (ex: *Rastro Voltaico*).
+* **Sistema de Sobrecarga (Overdrive):** Mecânica de risco-recompensa onde acumular energia acima de 100% aumenta o dano, mas esgotá-la causa superaquecimento e vulnerabilidade.
+* **Postura e Quebra de Guarda:** Inimigos de elite possuem barras de postura que, ao serem quebradas via *Parries*, permitem execuções cinematográficas.
 
 ##  Estilo Visual
 
