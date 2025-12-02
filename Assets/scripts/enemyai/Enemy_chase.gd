@@ -8,9 +8,15 @@ extends EnemyState
 @export var jump_cooldown_time: float = 3.0 
 var current_jump_timer: float = 0.0
 
+# --- NOVO CÓDIGO (1/3) ---
+# Tempo de espera entre ataques (2 segundos conforme solicitado)
+@export var attack_cooldown: float = 2.0
+var current_attack_timer: float = 0.0
+# -------------------------
+
 func enter() -> void:
 	super()
-
+	
 	var visual_node = _get_visual_node()
 	if visual_node and (visual_node is AnimatedSprite2D):
 		if visual_node.animation != "Walk":
@@ -23,6 +29,12 @@ func process_physics(delta: float) -> EnemyState:
 	
 	if current_jump_timer > 0:
 		current_jump_timer -= delta
+		
+	# --- NOVO CÓDIGO (2/3) ---
+	# Diminui o tempo de recarga do soco
+	if current_attack_timer > 0:
+		current_attack_timer -= delta
+	# -------------------------
 	
 	var target = player.target
 	if not target:
@@ -36,22 +48,26 @@ func process_physics(delta: float) -> EnemyState:
 			if block_state:
 				return block_state
 
-
-
 	if current_jump_timer <= 0:
 		if (not target.is_on_floor()) or (randf() < jump_chance):
 			if jump_state:
 				current_jump_timer = jump_cooldown_time 
 				return jump_state
 
-
 	var attack_range = player.get("attack_range")
 	if attack_range == null: attack_range = 40.0
 	
-
+	# --- CÓDIGO ALTERADO (3/3) ---
 	if dist <= (attack_range - 10):
-		player.velocity.x = 0
-		return punch_state
+		# Só ataca se o timer zerou
+		if current_attack_timer <= 0:
+			player.velocity.x = 0
+			current_attack_timer = attack_cooldown # Reseta o timer para 2s
+			return punch_state
+		else:
+			# Se estiver perto mas em recarga (cooldown), o inimigo para e espera
+			player.velocity.x = 0
+	# -----------------------------
 	else:
 		player.velocity.x = dir_x * chase_speed
 
@@ -64,7 +80,6 @@ func process_physics(delta: float) -> EnemyState:
 			if sprite_faces_left:
 				facing_direction *= -1
 			
-
 			var visual_node = _get_visual_node()
 			if visual_node:
 				visual_node.scale.x = abs(visual_node.scale.x) * facing_direction

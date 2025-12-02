@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://gbynakklms0u" path="res://Assets/characters/enemy_punch.gd" id="5_ttk51"]
 [ext_resource type="Script" uid="uid://dheanuuiaatxy" path="res://Assets/scripts/enemyai/block_box.gd" id="5_u2f50"]
 [ext_resource type="Script" uid="uid://c37fbdnkppdp3" path="res://Assets/scripts/enemyai/enemy_hurt.gd" id="7_al800"]
-[ext_resource type="Script" uid="uid://br41w1x5b15he" path="res://Assets/scripts/enemyai/enemy_jumpkick.gd" id="9_4bvwp"]
+[ext_resource type="Script" path="res://Assets/scripts/enemyai/enemy_jumpkick.gd" id="9_4bvwp"]
 [ext_resource type="Texture2D" uid="uid://cd0whi04m4uf3" path="res://Assets/sprites/Enemy Punk/hurt.png" id="14_bm1uj"]
 [ext_resource type="Texture2D" uid="uid://b32dg650semne" path="res://Assets/sprites/Enemy Punk/idle.png" id="15_ic80g"]
 [ext_resource type="Texture2D" uid="uid://b1g53u86w2yw" path="res://Assets/sprites/Enemy Punk/punch.png" id="16_y633j"]
@@ -171,6 +171,7 @@ aggression = 0.5
 jump_chance = 0.002
 sprite_faces_left = true
 jump_cooldown_time = 3.0
+attack_cooldown = 2.0
 
 [node name="Jump" parent="State Machine" index="2"]
 script = null
