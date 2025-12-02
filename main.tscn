@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ddaawc8bvt4fx"]
+[gd_scene load_steps=22 format=3 uid="uid://ddaawc8bvt4fx"]
 
 [ext_resource type="Script" uid="uid://dmcvipjn467h1" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://bpx866b8s7eyg" path="res://Assets/Stage/stage_tile_map.tscn" id="2_5vw27"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://cdj0v17b7kdou" path="res://Assets/scripts/Stage/camera.gd" id="6_efxa6"]
 [ext_resource type="Texture2D" uid="uid://g4x8qwe0124k" path="res://Assets/sprites/Stage/back.png" id="7_dg77c"]
 [ext_resource type="Texture2D" uid="uid://cs5uded8pxmff" path="res://Assets/sprites/Stage/Stage_Hospial.png" id="8_ycdy4"]
+[ext_resource type="AudioStream" uid="uid://itb6pcm2lxr3" path="res://Assets/music/Cyberpunk Soundtrack - I REALLY WANT TO STAY AT YOUR HOUSE (8 Bit Raxlen Slice Chiptune Remix) [oiftRT1xjrU].mp3" id="10_dg77c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dg77c"]
 texture = ExtResource("3_kek77")
@@ -1935,6 +1936,11 @@ sources/3 = SubResource("TileSetAtlasSource_efxa6")
 sources/4 = SubResource("TileSetAtlasSource_w48qg")
 sources/6 = SubResource("TileSetAtlasSource_vivmo")
 
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_ycdy4"]
+stream_count = 2
+stream_0 = ExtResource("10_dg77c")
+stream_1 = ExtResource("10_dg77c")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kek77"]
 size = Vector2(38.5, 459.14063)
 
@@ -1958,6 +1964,7 @@ position_smoothing_enabled = true
 script = ExtResource("6_efxa6")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamPlaylist_ycdy4")
 volume_db = -20.8
 pitch_scale = 0.85
 

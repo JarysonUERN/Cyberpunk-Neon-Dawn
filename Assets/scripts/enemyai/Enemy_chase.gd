@@ -8,9 +8,14 @@ extends EnemyState
 @export var jump_cooldown_time: float = 3.0 
 var current_jump_timer: float = 0.0
 
+# --- NOVAS VARIÁVEIS PARA O SOCO ---
+@export var punch_cooldown_time: float = 1.0 # Tempo de espera (1 segundo)
+var current_punch_timer: float = 0.0         # Cronômetro atual
+# -----------------------------------
+
 func enter() -> void:
 	super()
-
+	
 	var visual_node = _get_visual_node()
 	if visual_node and (visual_node is AnimatedSprite2D):
 		if visual_node.animation != "Walk":
@@ -23,6 +28,11 @@ func process_physics(delta: float) -> EnemyState:
 	
 	if current_jump_timer > 0:
 		current_jump_timer -= delta
+		
+	# --- LÓGICA DO TIMER DO SOCO ---
+	if current_punch_timer > 0:
+		current_punch_timer -= delta
+	# -------------------------------
 	
 	var target = player.target
 	if not target:
@@ -36,22 +46,27 @@ func process_physics(delta: float) -> EnemyState:
 			if block_state:
 				return block_state
 
-
-
 	if current_jump_timer <= 0:
 		if (not target.is_on_floor()) or (randf() < jump_chance):
 			if jump_state:
 				current_jump_timer = jump_cooldown_time 
 				return jump_state
 
-
 	var attack_range = player.get("attack_range")
 	if attack_range == null: attack_range = 40.0
 	
-
+	# --- LÓGICA DE ATAQUE MODIFICADA ---
 	if dist <= (attack_range - 10):
-		player.velocity.x = 0
-		return punch_state
+		player.velocity.x = 0 # Para o personagem pois está no alcance
+		
+		# Só ataca se o timer estiver zerado
+		if current_punch_timer <= 0:
+			current_punch_timer = punch_cooldown_time # Reseta o timer para 1s
+			return punch_state
+		
+		# Se estiver em cooldown, ele retorna null (continua neste estado "Chase" mas parado esperando)
+		return null
+	# -----------------------------------
 	else:
 		player.velocity.x = dir_x * chase_speed
 
@@ -64,7 +79,6 @@ func process_physics(delta: float) -> EnemyState:
 			if sprite_faces_left:
 				facing_direction *= -1
 			
-
 			var visual_node = _get_visual_node()
 			if visual_node:
 				visual_node.scale.x = abs(visual_node.scale.x) * facing_direction
