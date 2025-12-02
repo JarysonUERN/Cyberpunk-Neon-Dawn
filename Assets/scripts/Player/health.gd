@@ -1,12 +1,12 @@
 extends Node
 
+signal died(player_ref)
+
 @export var health: int = 100
 @export var freeze_slow: float = 0.05
 @export var freeze_time: float = 0.3
 
-# --- CORREÇÃO DO CAMINHO ---
-# O nó Health é irmão do CanvasLayer. O caminho correto é subir um nível (..) e entrar no CanvasLayer
-@onready var health_bar_node = $"../CanvasLayer/HealthBar" 
+@onready var health_bar_node = $"../CanvasLayer/HealthBar"
 @onready var player = get_parent()
 
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -14,18 +14,19 @@ var trig_death: bool = false
 
 func _ready():
 	if health_bar_node:
-		# Inicializa a barra visual com a vida total
 		if health_bar_node.has_method("_init_health"):
 			health_bar_node._init_health(health)
 	else:
 		print("ERRO: HealthBar não encontrada no caminho ../CanvasLayer/HealthBar")
 
 func deal_damage(damage: int) -> void:
-	print("Vida antes: ", health, " | Dano recebido: ", damage)
+	if trig_death:
+		return
+
+	print("Vida antes: ", health, "| Dano: ", damage)
 	health -= damage
-	print("Vida atual: ", health)
+	print("Vida depois: ", health)
 	
-	# Atualiza a barra visual
 	if health_bar_node and health_bar_node.has_method("_set_health"):
 		health_bar_node._set_health(health)
 		
@@ -33,17 +34,20 @@ func deal_damage(damage: int) -> void:
 		die()
 
 func die():
-	if trig_death: return
+	if trig_death:
+		return
 	trig_death = true
 	
 	print(player.name + " MORREU!")
-	
-	# Tenta tocar animação de morte
-	if player.has_node("Player"): # AnimationPlayer
+
+	emit_signal("died", player)   # <--- Aqui avisa a Main
+
+	# Animação
+	if player.has_node("Player"):
 		player.get_node("Player").play("Death")
-	elif player.has_node("Sprite"): # AnimatedSprite2D
-		player.get_node("Sprite").play("Hurt") # Ou animação de morte específica
-		
+	elif player.has_node("Sprite"):
+		player.get_node("Sprite").play("Hurt")
+
 	engine_slow()
 
 func engine_slow() -> void:

@@ -1,4 +1,4 @@
-class_name EnemyPunchState
+class_name EnemyPunch
 extends EnemyState 
 
 # MUDANÇA: Tipo deve ser EnemyState

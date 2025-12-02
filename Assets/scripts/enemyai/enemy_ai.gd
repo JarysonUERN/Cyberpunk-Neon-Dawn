@@ -15,58 +15,65 @@ var current_state: EnemyState:
 
 func _ready():
 	# --- CORREÇÃO VIA CÓDIGO (HARDCODED) ---
+	# Isso garante que as conexões existam mesmo se o Inspector estiver vazio
 	if state_machine:
+		# 1. Pega os nós filhos da State Machine pelos nomes exatos da cena
 		var idle_node = state_machine.get_node_or_null("Idle")
 		var walk_node = state_machine.get_node_or_null("Walk")
 		var punch_node = state_machine.get_node_or_null("Punch")
 		var block_node = state_machine.get_node_or_null("Block")
-		var kick_node = state_machine.get_node_or_null("Kick")
+<<<<<<< HEAD
+=======
+		var kick_node = state_machine.get_node_or_null("Kick") # Se tiver
 		var jump_node = state_machine.get_node_or_null("Jump")
 		var fall_node = state_machine.get_node_or_null("Fall")
-		var jump_kick_node = state_machine.get_node_or_null("Jump Kick")
+>>>>>>> parent of 665e68f (jumpkick)
 		
-		# Define o Estado Inicial
+		# 2. Define o Estado Inicial (Resolve o congelamento inicial)
 		if idle_node:
 			state_machine.starting_state = idle_node
+		else:
+			push_error("ERRO CRITICO: Nó 'Idle' não encontrado dentro da State Machine!")
 
-		# --- CONEXÕES DO IDLE ---
+		# 3. Conecta as transições do IDLE (Resolve ela não perseguir)
 		if idle_node:
 			idle_node.walk_state = walk_node
+<<<<<<< HEAD
+=======
+			# Se quiser que ela pule/caia do idle:
 			idle_node.fall_state = fall_node 
-			idle_node.jump_state = jump_node
+>>>>>>> parent of 665e68f (jumpkick)
 
-		# --- CONEXÕES DO WALK (PERSEGUIÇÃO) ---
+		# 4. Conecta as transições do WALK (Resolve ela travar na frente do player)
 		if walk_node:
+<<<<<<< HEAD
 			walk_node.idle_state = idle_node
 			walk_node.punch_state = punch_node
 			walk_node.block_state = block_node
-			walk_node.jump_state = jump_node 
-			walk_node.fall_state = fall_node
+
 
 		# Conexões de Combate
 		if punch_node: punch_node.return_state = idle_node
 		if block_node: block_node.idle_state = idle_node
 
-		# Conexões Aéreas (Para o Jump Kick funcionar)
-		if jump_node:
-			jump_node.fall_state = fall_node
-			jump_node.jump_kick_state = jump_kick_node 
+=======
+			walk_node.idle_state = idle_node   # Se o player sumir
+			walk_node.punch_state = punch_node # Se chegar perto -> SOCO
+			walk_node.block_state = block_node # Se o player atacar -> DEFESA
+			# walk_node.kick_state = kick_node # Se tiver chute
 			
-		if fall_node:
-			fall_node.idle_state = idle_node
-			fall_node.jump_kick_state = jump_kick_node 
+		# 5. Conecta o retorno do PUNCH (Evita loop ou travamento após soco)
+		if punch_node:
+			punch_node.return_state = idle_node # Volta para Idle após bater
 
-		# Configuração do Jump Kick Hitbox
-		if jump_kick_node:
-			jump_kick_node.idle_state = idle_node 
-			jump_kick_node.fall_state = fall_node 
-			if jump_kick_node.hitbox == null:
-				var box = jump_kick_node.find_child("Jump Kick")
-				if not box: box = jump_kick_node.find_child("Hitbox")
-				if box and box is Area2D:
-					jump_kick_node.hitbox = box
+		# 6. Conecta o retorno do BLOCK
+		if block_node:
+			block_node.idle_state = idle_node
+>>>>>>> parent of 665e68f (jumpkick)
 
-	# Inicializa a máquina
+	# --- FIM DA CORREÇÃO ---
+
+	# Inicializa a máquina normalmente
 	if state_machine:
 		state_machine.init(self)
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4ck1u04631r1"]
+[gd_scene load_steps=6 format=3 uid="uid://c4ck1u04631r1"]
 
 [ext_resource type="Texture2D" uid="uid://d2p360y7rl64" path="res://Assets/UI/menu/menu-splash.png" id="1_kaac3"]
 [ext_resource type="Script" uid="uid://bijv8auuipopw" path="res://Assets/UI/menu/menucontroller.gd" id="1_yg8pq"]
+[ext_resource type="PackedScene" uid="uid://bmsp3iuvwtgct" path="res://Assets/Cutcene/Cutscene1.tscn" id="2_tbt0o"]
 [ext_resource type="AudioStream" uid="uid://itb6pcm2lxr3" path="res://Assets/music/Cyberpunk Soundtrack - I REALLY WANT TO STAY AT YOUR HOUSE (8 Bit Raxlen Slice Chiptune Remix) [oiftRT1xjrU].mp3" id="3_6s4cg"]
 [ext_resource type="Texture2D" uid="uid://cm1q62ipnw1ks" path="res://Assets/UI/menu/LogoMenu.png" id="3_r4lso"]
 
@@ -13,6 +14,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yg8pq")
+cena_cutscene = ExtResource("2_tbt0o")
 
 [node name="MenuSplash" type="Sprite2D" parent="."]
 position = Vector2(943.5, 524.25)
@@ -61,7 +63,7 @@ theme_override_constants/align_to_largest_stylebox = 4
 theme_override_font_sizes/font_size = 24
 text = "Sair "
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="VBoxContainer"]
+[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="VBoxContainer"]
 stream = ExtResource("3_6s4cg")
 volume_db = -21.894
 autoplay = true
