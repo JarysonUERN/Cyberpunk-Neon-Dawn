@@ -1981,24 +1981,19 @@ position = Vector2(694, 367)
 collision_layer = 5
 collision_mask = 1
 
-[node name="Fighter Girl2" parent="." instance=ExtResource("3_1bvp3")]
-position = Vector2(694, 367)
-collision_layer = 5
-collision_mask = 1
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(3224, 397.14063)
 shape = SubResource("RectangleShape2D_kek77")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(956, 15)
-rotation = 1.5707964
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1567, 728)
+rotation = -3.1415925
 shape = SubResource("RectangleShape2D_kek77")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/CollisionShape2D"]
-position = Vector2(752.375, -645.82135)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(956, 15)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_kek77")
 

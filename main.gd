@@ -99,7 +99,6 @@ func toggle_music():
 			music_player.stop()
 		else:
 			music_player.play()
---
 
 func pause():
 	if Input.is_action_just_pressed("Pause") or Input.is_action_just_pressed("ui_cancel"):
