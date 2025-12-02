@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [gd_scene load_steps=33 format=3 uid="uid://cntwf33ussx36"]
+=======
+[gd_scene load_steps=14 format=3 uid="uid://cntwf33ussx36"]
+>>>>>>> parent of 665e68f (jumpkick)
 
 [ext_resource type="PackedScene" uid="uid://djqjols3si08e" path="res://Assets/characters/brawler_girl.tscn" id="1"]
 [ext_resource type="Shader" uid="uid://cjqcf4mpns0pv" path="res://Assets/sprites/Brawler Girl/brawler_girl.gdshader" id="2"]
@@ -10,11 +14,14 @@
 [ext_resource type="Script" uid="uid://gbynakklms0u" path="res://Assets/characters/enemy_punch.gd" id="5_ttk51"]
 [ext_resource type="Script" uid="uid://dheanuuiaatxy" path="res://Assets/scripts/enemyai/block_box.gd" id="5_u2f50"]
 [ext_resource type="Script" uid="uid://c37fbdnkppdp3" path="res://Assets/scripts/enemyai/enemy_hurt.gd" id="7_al800"]
+<<<<<<< HEAD
 [ext_resource type="Script" path="res://Assets/scripts/enemyai/enemy_jumpkick.gd" id="9_4bvwp"]
 [ext_resource type="Texture2D" uid="uid://cd0whi04m4uf3" path="res://Assets/sprites/Enemy Punk/hurt.png" id="14_bm1uj"]
 [ext_resource type="Texture2D" uid="uid://b32dg650semne" path="res://Assets/sprites/Enemy Punk/idle.png" id="15_ic80g"]
 [ext_resource type="Texture2D" uid="uid://b1g53u86w2yw" path="res://Assets/sprites/Enemy Punk/punch.png" id="16_y633j"]
 [ext_resource type="Texture2D" uid="uid://be7nmd8sce2q0" path="res://Assets/sprites/Enemy Punk/walk.png" id="17_naivh"]
+=======
+>>>>>>> parent of 665e68f (jumpkick)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_esh3e"]
 shader = ExtResource("2")
@@ -168,10 +175,15 @@ detect_range = 300.0
 script = ExtResource("3_5n4mo")
 chase_speed = 80.0
 aggression = 0.5
+<<<<<<< HEAD
 jump_chance = 0.002
 sprite_faces_left = true
 jump_cooldown_time = 3.0
 attack_cooldown = 2.0
+=======
+jump_chance = 0.02
+sprite_faces_left = false
+>>>>>>> parent of 665e68f (jumpkick)
 
 [node name="Jump" parent="State Machine" index="2"]
 script = null
@@ -185,10 +197,6 @@ return_state = NodePath(".")
 
 [node name="Punch" parent="State Machine/Punch" index="0"]
 collision_mask = 2
-
-[node name="Jump Kick" parent="State Machine" index="6"]
-script = ExtResource("9_4bvwp")
-air_speed = 150.0
 
 [node name="Hurt" parent="State Machine" index="7"]
 script = ExtResource("7_al800")
